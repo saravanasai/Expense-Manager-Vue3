@@ -64,14 +64,7 @@
       </Tittle>
     </template>
     <template v-slot:content>
-      <div class="row row-deck row-cards">
-        <simple-card
-          :heading="'Spent'"
-          :secondHeading="'Total amount spend'"
-          :total="25"
-          :color="'danger'"
-        ></simple-card>
-      </div>
+        <hero-card/>
     </template>
   </MainLayout>
 </template>
@@ -79,9 +72,9 @@
 <script>
 import Tittle from "../../layout/Tittle/Tittle.vue";
 import MainLayout from "../../layout/Main/Main.vue";
-import SimpleCard from "../../../components/Widget/SimpleCard/SimpleCard.vue";
+import HeroCard from "../../../components/Widget/HeroCard/HeroCard.vue";
 export default {
-  components: { Tittle, MainLayout, SimpleCard },
+  components: { Tittle, MainLayout,HeroCard},
 };
 </script>
 
