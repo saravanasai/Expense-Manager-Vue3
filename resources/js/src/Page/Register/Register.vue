@@ -62,11 +62,6 @@
             </div>
           </div>
           <div class="form-footer">
-              <div class="card">
-                  <div>{{username}}</div>
-                  <div>{{password}}</div>
-                  <div>{{email}}</div>
-              </div>
             <button type="submit" class="btn btn-primary w-100">
               Create new account
             </button>
