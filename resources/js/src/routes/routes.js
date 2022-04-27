@@ -5,7 +5,7 @@ import Register from "../Page/Register/Register.vue";
 import Login from "../Page/Login/Login.vue";
 import About from "../Page/About/About.vue";
 import NotFound from "../Page/404/404.vue";
-import useAuth from "../composables/useAuth";
+
 
 
 const Expense = import('../Page/Expense/Expense.vue');

@@ -1,4 +1,4 @@
-import { inject } from "vue";
+
 import api from "../../../config"
 export default function useAuth()
 {
@@ -8,21 +8,25 @@ export default function useAuth()
          window.localStorage.setItem('auth_token',token)
      }
 
-     function removeAuthToken(token)
+     function isAuthenticated()
+     {
+         return window.localStorage.getItem('auth_token') ? true : false;
+     }
+
+     function removeAuthToken()
      {
          window.localStorage.removeItem('auth_token')
      }
 
      function login(data)
      {
-        api.get('hello').then(e=>{
-
-            console.log("okok");
-        })
-        .catch(e=>{
-            console.log(e);
-        })
+        return api.post('user-registeration',data)
      }
 
-     return {login}
+     function logout()
+     {
+        return api.post('/user/user-logout')
+     }
+
+     return {login,setAuthToken,logout,removeAuthToken,isAuthenticated}
 }

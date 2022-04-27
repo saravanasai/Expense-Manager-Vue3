@@ -1,21 +1,25 @@
 <template>
   <div class="page page-center">
-    <div class="container-tight ">
+    <div class="container-tight">
       <div class="text-center mb-4">
-        <a href="." class="navbar-brand navbar-brand-autodark"
-          ></a>
+        <a href="." class="navbar-brand navbar-brand-autodark"></a>
       </div>
       <form class="card card-md" action="." method="get">
         <div class="card-body">
           <h2 class="card-title text-center mb-4">Create new account</h2>
           <div class="mb-3">
             <label class="form-label">Name</label>
-            <input v-model="username" type="text" class="form-control" placeholder="Enter name" />
+            <input
+              v-model="username"
+              type="text"
+              class="form-control"
+              placeholder="Enter name"
+            />
           </div>
           <div class="mb-3">
             <label class="form-label">Email address</label>
             <input
-             v-model="email"
+              v-model="email"
               type="email"
               class="form-control"
               placeholder="Enter email"
@@ -25,7 +29,7 @@
             <label class="form-label">Password</label>
             <div class="input-group input-group-flat">
               <input
-               v-model="password"
+                v-model="password"
                 :type="isVisible ? 'text' : 'password'"
                 class="form-control"
                 placeholder="Password"
@@ -62,43 +66,74 @@
             </div>
           </div>
           <div class="form-footer">
-            <button type="submit" class="btn btn-primary w-100">
+            <button type="button" @click="handleLogin" class="btn btn-primary w-100">
               Create new account
             </button>
           </div>
         </div>
       </form>
       <div class="text-center text-muted mt-3">
-        Already have account? <router-link  :to="{name:'login'}">Log in</router-link>
+        Already have account?
+        <router-link :to="{ name: 'login' }">Log in</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref, toRefs } from '@vue/reactivity';
+import { reactive, ref, toRefs } from "@vue/reactivity";
+import { useRouter, useRoute } from 'vue-router'
+import useAuth from "../../composables/useAuth"
+import { inject } from '@vue/runtime-core';
 export default {
+  setup() {
+    const state = reactive({
+      username: "",
+      email: "",
+      password: "",
+      isVisible: false,
+    });
 
-    setup()
-   {
+    const router = useRouter()
+    const route = useRoute()
 
-        const state = reactive({
-            username:'',
-            email:'',
-            password:'',
-            isVisible: false,
+     let {login,setAuthToken}=useAuth()
+     let {authState}=inject('store')
+
+    const handleLogin=()=>{
+
+      let data={
+          name:state.username,
+          email:state.email,
+          password:state.password
+      }
+
+         login(data).then(e=>{
+
+            if(e.status==200)
+            {
+                setAuthToken(e.data.token)
+                authState=true
+                router.push(route.query.redirect)
+            }
+
+
+        })
+        .catch(e=>{
+            console.log(e);
         })
 
-          const togglePasswordVisibility =()=>{
-              state.isVisible=!state.isVisible
-          }
 
 
-        return {...toRefs(state),togglePasswordVisibility}
 
-   }
+    }
 
+    const togglePasswordVisibility = () => {
+      state.isVisible = !state.isVisible;
+    };
 
+    return { ...toRefs(state), togglePasswordVisibility,handleLogin };
+  },
 };
 </script>
 

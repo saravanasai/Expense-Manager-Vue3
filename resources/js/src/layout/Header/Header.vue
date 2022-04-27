@@ -18,7 +18,7 @@
       >
         <a href=".">
           <img
-            :src=Logo
+            :src="Logo"
             alt="Expense Manager"
             class="navbar-brand-image"
             width="110"
@@ -335,7 +335,7 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" :to="{name:'home'}">
+              <router-link class="nav-link" :to="{ name: 'home' }">
                 <span class="nav-link-icon d-md-none d-lg-inline-block"
                   ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                   <svg
@@ -359,8 +359,8 @@
                 <span class="nav-link-title"> Home </span>
               </router-link>
             </li>
-             <li class="nav-item">
-              <router-link class="nav-link" :to="{name:'about-us'}">
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'about-us' }">
                 <span class="nav-link-icon d-md-none d-lg-inline-block"
                   ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                   <svg
@@ -384,8 +384,8 @@
                 <span class="nav-link-title"> About Us </span>
               </router-link>
             </li>
-             <li class="nav-item">
-              <router-link class="nav-link" :to="{name:'expense'}">
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'expense' }">
                 <span class="nav-link-icon d-md-none d-lg-inline-block"
                   ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                   <svg
@@ -409,56 +409,98 @@
                 <span class="nav-link-title"> My-Expense </span>
               </router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{name:'register'}">
-                <span class="nav-link-icon d-md-none d-lg-inline-block"
-                  ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
-                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title"> Register </span>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{name:'login'}">
-                <span class="nav-link-icon d-md-none d-lg-inline-block"
-                  ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
-                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title"> Login </span>
-              </router-link>
-            </li>
+            <template >
+              <li class="nav-item" v-show="!authState">
+                <router-link class="nav-link" :to="{ name: 'register' }">
+                    {{authState}}
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"
+                    ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
+                      <path
+                        d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"
+                      ></path>
+                      <path
+                        d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title"> Register </span>
+                </router-link>
+              </li>
+              <li class="nav-item" v-show="!authState">
+                <router-link class="nav-link" :to="{ name: 'login' }">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"
+                    ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
+                      <path
+                        d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"
+                      ></path>
+                      <path
+                        d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title"> Login </span>
+                </router-link>
+              </li>
+            </template>
+            <template>
+              <li class="nav-item"  v-show="authState.auth">
+                <button class="nav-link" type="button" @click="handleLogout">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"
+                    ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
+                      <path
+                        d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"
+                      ></path>
+                      <path
+                        d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title"> Logout </span>
+                </button>
+              </li>
+            </template>
           </ul>
         </div>
       </div>
@@ -468,19 +510,31 @@
 </template>
 
 <script>
-import Logo from '../../assets/logo/logo.jpg'
+import { inject, reactive } from "@vue/runtime-core";
+import Logo from "../../assets/logo/logo.jpg";
+import useAuth from '../../composables/useAuth';
+import { useRouter } from 'vue-router';
 export default {
+  components: {},
+  setup() {
+    let { authStates } = inject("store");
+    let {logout,removeAuthToken,isAuthenticated}=useAuth()
+    let authState=reactive({auth:isAuthenticated()})
+    const router=useRouter()
+   const handleLogout=()=>{
 
-  components:{},
-  setup()
-  {
+        logout().then(e=>{
 
+            if(e.status==204)
+            {
+                removeAuthToken()
+                router.push({name:'home'})
+            }
+        })
+   }
 
-      return {Logo}
-  }
-
-
-
+    return { Logo, authState,handleLogout };
+  },
 };
 </script>
 
