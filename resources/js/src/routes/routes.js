@@ -9,6 +9,7 @@ import NotFound from "../Page/404/404.vue";
 
 
 const Expense = import('../Page/Expense/Expense.vue');
+const NewExpense = import('../Page/Expense/NewExpense.vue');
 
 
 const routes = [
@@ -32,6 +33,12 @@ const routes = [
         path: "/my-expense",
         name: "expense",
         component: Expense,
+        meta:{requiresAuth: true}
+    },
+    {
+        path: "/create-expense",
+        name: "new-expense",
+        component: NewExpense,
         meta:{requiresAuth: true}
     },
     {

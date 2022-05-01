@@ -80,15 +80,6 @@ export default {
   setup()
   {
 
-      let {login} = useAuth()
-      login('hello')
-      onMounted(()=>{
-
-      })
-      console.log('okok');
-
-
-
      return {}
   }
 };

@@ -37,7 +37,7 @@
               />
               <span class="input-group-text">
                 <a
-                  @click="togglePasswordVisibility"
+                  @click="isVisible = !isVisible"
                   class="link-secondary"
                   title=""
                   data-bs-toggle="tooltip"
@@ -66,7 +66,11 @@
             </div>
           </div>
           <div class="form-footer">
-            <button type="button" @click="handleLogin" class="btn btn-primary w-100">
+            <button
+              type="button"
+              @click="handleLogin"
+              class="btn btn-primary w-100"
+            >
               Create new account
             </button>
           </div>
@@ -81,10 +85,10 @@
 </template>
 
 <script>
-import { reactive, ref, toRefs } from "@vue/reactivity";
-import { useRouter, useRoute } from 'vue-router'
-import useAuth from "../../composables/useAuth"
-import { inject } from '@vue/runtime-core';
+import { reactive, toRefs } from "@vue/reactivity";
+import useAuth from "../../composables/useAuth";
+import useNavigation from "../../composables/useNavigation";
+import { inject } from "@vue/runtime-core";
 export default {
   setup() {
     const state = reactive({
@@ -94,45 +98,35 @@ export default {
       isVisible: false,
     });
 
-    const router = useRouter()
-    const route = useRoute()
+    // inject reactive value
+    const { authState, updateAuthState } = inject("store");
+    const { router, route } = useNavigation();
 
-     let {login,setAuthToken}=useAuth()
-     let {authState}=inject('store')
+    let { login, setAuthToken } = useAuth();
 
-    const handleLogin=()=>{
+    const handleLogin = () => {
+      let data = {
+        name: state.username,
+        email: state.email,
+        password: state.password,
+      };
 
-      let data={
-          name:state.username,
-          email:state.email,
-          password:state.password
-      }
-
-         login(data).then(e=>{
-
-            if(e.status==200)
-            {
-                setAuthToken(e.data.token)
-                authState=true
-                router.push(route.query.redirect)
-            }
-
-
+      login(data)
+        .then((e) => {
+          if (e.status == 200) {
+            setAuthToken(e.data.token);
+            updateAuthState(true);
+            window.location.href= route.query.redirect ? route.query.redirect : '/'
+          }
         })
-        .catch(e=>{
-            console.log(e);
-        })
-
-
-
-
-    }
-
-    const togglePasswordVisibility = () => {
-      state.isVisible = !state.isVisible;
+        .catch((e) => {
+          console.log(e);
+        });
     };
 
-    return { ...toRefs(state), togglePasswordVisibility,handleLogin };
+
+
+    return { ...toRefs(state), handleLogin, authState };
   },
 };
 </script>

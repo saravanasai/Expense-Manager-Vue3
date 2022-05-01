@@ -12,7 +12,7 @@
                 Tracking your expense.
               </h5>
               <div class="empty-action float-end">
-                <a href="./." class="btn btn-dark">
+                <router-link :to="{name:'new-expense'}" class="btn btn-dark">
                   <!-- Download SVG icon from http://tabler-icons.io/i/search -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@
                     <path d="M7 12l0 -3l5 -1l3 3l3 1"></path>
                   </svg>
                   Start Tracking
-                </a>
+                </router-link>
               </div>
             </div>
           </div>

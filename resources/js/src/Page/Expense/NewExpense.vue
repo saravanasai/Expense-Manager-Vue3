@@ -2,17 +2,15 @@
   <MainLayout>
     <template v-slot:top-section>
       <Tittle>
-        <template v-slot:pre-tittle>My Expenses</template>
-        <template v-slot:page-tittle>My Expenses </template>
+        <template v-slot:pre-tittle>ADD NEW EXPENSE</template>
+        <template v-slot:page-tittle>ADD NEW EXPENSE </template>
         <template v-slot:right-side-content>
           <div class="btn-list">
             <span class="d-none d-sm-inline">
-              <a href="#" class="btn btn-dark">Dashboard</a>
+              <router-link :to="{name:'home'}" class="btn btn-dark">Home</router-link>
             </span>
-            <router-link
-
-              class="btn btn-primary d-none d-sm-inline-block"
-              :to="{name:'new-expense'}"
+            <button class="btn btn-primary"
+             @click="this.$router.go(-1)"
             >
               <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
               <svg
@@ -31,8 +29,8 @@
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
-              Add New Expense
-            </router-link>
+               Back
+            </button>
             <a
               href="#"
               class="btn btn-primary d-sm-none btn-icon"
@@ -64,16 +62,7 @@
     </template>
     <template v-slot:content>
       <div class="card p-5">
-        <div class="row row-cards">
-            <div class="col-md-6">
-                <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            </div>
-        </div>
+
       </div>
     </template>
   </MainLayout>

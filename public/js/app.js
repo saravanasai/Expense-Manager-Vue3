@@ -19605,7 +19605,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layout_Main_Main_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../layout/Main/Main.vue */ "./resources/js/src/layout/Main/Main.vue");
 /* harmony import */ var _components_Widget_HeroCard_HeroCard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/Widget/HeroCard/HeroCard.vue */ "./resources/js/components/Widget/HeroCard/HeroCard.vue");
 /* harmony import */ var _composables_useAuth_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../composables/useAuth/index */ "./resources/js/src/composables/useAuth/index.js");
-/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
 
 
 
@@ -19618,12 +19617,6 @@ __webpack_require__.r(__webpack_exports__);
     HeroCard: _components_Widget_HeroCard_HeroCard_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   setup: function setup() {
-    var _useAuth = (0,_composables_useAuth_index__WEBPACK_IMPORTED_MODULE_3__["default"])(),
-        login = _useAuth.login;
-
-    login('hello');
-    (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_4__.onMounted)(function () {});
-    console.log('okok');
     return {};
   }
 });
@@ -19656,9 +19649,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _vue_reactivity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/reactivity */ "./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var _vue_reactivity__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/reactivity */ "./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js");
 /* harmony import */ var _composables_useAuth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../composables/useAuth */ "./resources/js/src/composables/useAuth/index.js");
+/* harmony import */ var _composables_useNavigation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../composables/useNavigation */ "./resources/js/src/composables/useNavigation/index.js");
 /* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -19672,21 +19665,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup() {
-    var state = (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_1__.reactive)({
+    var state = (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_2__.reactive)({
       username: "",
       email: "",
       password: "",
       isVisible: false
-    });
-    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
-    var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRoute)();
+    }); // inject reactive value
+
+    var _inject = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_3__.inject)("store"),
+        authState = _inject.authState,
+        updateAuthState = _inject.updateAuthState;
+
+    var _useNavigation = (0,_composables_useNavigation__WEBPACK_IMPORTED_MODULE_1__["default"])(),
+        router = _useNavigation.router,
+        route = _useNavigation.route;
 
     var _useAuth = (0,_composables_useAuth__WEBPACK_IMPORTED_MODULE_0__["default"])(),
         login = _useAuth.login,
         setAuthToken = _useAuth.setAuthToken;
-
-    var _inject = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_3__.inject)('store'),
-        authState = _inject.authState;
 
     var handleLogin = function handleLogin() {
       var data = {
@@ -19697,21 +19693,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       login(data).then(function (e) {
         if (e.status == 200) {
           setAuthToken(e.data.token);
-          authState = true;
-          router.push(route.query.redirect);
+          updateAuthState(true);
+          window.location.href = route.query.redirect ? route.query.redirect : '/';
         }
       })["catch"](function (e) {
         console.log(e);
       });
     };
 
-    var togglePasswordVisibility = function togglePasswordVisibility() {
-      state.isVisible = !state.isVisible;
-    };
-
-    return _objectSpread(_objectSpread({}, (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_1__.toRefs)(state)), {}, {
-      togglePasswordVisibility: togglePasswordVisibility,
-      handleLogin: handleLogin
+    return _objectSpread(_objectSpread({}, (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_2__.toRefs)(state)), {}, {
+      handleLogin: handleLogin,
+      authState: authState
     });
   }
 });
@@ -19769,11 +19761,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
-/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js");
+/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
 /* harmony import */ var _assets_logo_logo_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../assets/logo/logo.jpg */ "./resources/js/src/assets/logo/logo.jpg");
 /* harmony import */ var _composables_useAuth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../composables/useAuth */ "./resources/js/src/composables/useAuth/index.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var _composables_useNavigation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../composables/useNavigation */ "./resources/js/src/composables/useNavigation/index.js");
 
 
 
@@ -19781,26 +19772,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   setup: function setup() {
-    var _inject = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_2__.inject)("store"),
-        authStates = _inject.authStates;
+    // inject reactive value
+    var _inject = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_3__.inject)("store"),
+        authState = _inject.authState;
 
     var _useAuth = (0,_composables_useAuth__WEBPACK_IMPORTED_MODULE_1__["default"])(),
         logout = _useAuth.logout,
-        removeAuthToken = _useAuth.removeAuthToken,
-        isAuthenticated = _useAuth.isAuthenticated;
+        removeAuthToken = _useAuth.removeAuthToken;
 
-    var authState = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_3__.reactive)({
-      auth: isAuthenticated()
-    });
-    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.useRouter)();
+    var _useNavigation = (0,_composables_useNavigation__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+        router = _useNavigation.router,
+        route = _useNavigation.route;
 
     var handleLogout = function handleLogout() {
       logout().then(function (e) {
         if (e.status == 204) {
           removeAuthToken();
-          router.push({
-            name: 'home'
-          });
+          window.location.href = '/';
         }
       });
     };
@@ -19826,7 +19814,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
+/* harmony import */ var _composables_useAuth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../composables/useAuth */ "./resources/js/src/composables/useAuth/index.js");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: function setup() {
+    var _inject = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_1__.inject)("store"),
+        updateAuthState = _inject.updateAuthState;
+
+    var _useAuth = (0,_composables_useAuth__WEBPACK_IMPORTED_MODULE_0__["default"])(),
+        isAuthenticated = _useAuth.isAuthenticated;
+
+    (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
+      if (isAuthenticated()) {
+        updateAuthState(true);
+      } else {
+        updateAuthState(false);
+      }
+    });
+  }
+});
 
 /***/ }),
 
@@ -19870,21 +19878,86 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "row"
 };
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-8\"><div class=\"m-5 p-5\"><h1>Expense Tracker App</h1><h3>Easy &amp; Free &amp; Open Source</h3><h5> Its highly customizable &amp; simple to use. Create account to start Tracking your expense. </h5><div class=\"empty-action float-end\"><a href=\"./.\" class=\"btn btn-dark\"><!-- Download SVG icon from http://tabler-icons.io/i/search --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-run\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"13\" cy=\"4\" r=\"1\"></circle><path d=\"M4 17l5 1l.75 -1.5\"></path><path d=\"M15 21l0 -4l-4 -3l1 -6\"></path><path d=\"M7 12l0 -3l5 -1l3 3l3 1\"></path></svg> Start Tracking </a></div></div></div>", 1);
-
+var _hoisted_5 = {
+  "class": "col-md-8"
+};
 var _hoisted_6 = {
+  "class": "m-5 p-5"
+};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Expense Tracker App", -1
+/* HOISTED */
+);
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Easy & Free & Open Source", -1
+/* HOISTED */
+);
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, " Its highly customizable & simple to use. Create account to start Tracking your expense. ", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  "class": "empty-action float-end"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  "class": "icon icon-tabler icon-tabler-run",
+  width: "24",
+  height: "24",
+  viewBox: "0 0 24 24",
+  "stroke-width": "2",
+  stroke: "currentColor",
+  fill: "none",
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  stroke: "none",
+  d: "M0 0h24v24H0z",
+  fill: "none"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("circle", {
+  cx: "13",
+  cy: "4",
+  r: "1"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M4 17l5 1l.75 -1.5"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M15 21l0 -4l-4 -3l1 -6"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M7 12l0 -3l5 -1l3 3l3 1"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Start Tracking ");
+
+var _hoisted_13 = {
   "class": "col-md-4"
 };
-var _hoisted_7 = {
+var _hoisted_14 = {
   "class": "empty"
 };
-var _hoisted_8 = {
+var _hoisted_15 = {
   "class": "empty-img"
 };
-var _hoisted_9 = ["src"];
+var _hoisted_16 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, _hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'new-expense'
+    },
+    "class": "btn btn-dark"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Download SVG icon from http://tabler-icons.io/i/search "), _hoisted_11, _hoisted_12];
+    }),
+    _: 1
+    /* STABLE */
+
+  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     "class": "w-100 h-100",
     src: $setup.HeroImage,
     alt: "",
@@ -19892,7 +19965,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     width: "100%"
   }, null, 8
   /* PROPS */
-  , _hoisted_9)])])])])])])]);
+  , _hoisted_16)])])])])])])]);
 }
 
 /***/ }),
@@ -20516,8 +20589,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , _hoisted_14), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelDynamic, _ctx.password]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    onClick: _cache[3] || (_cache[3] = function () {
-      return $setup.togglePasswordVisibility && $setup.togglePasswordVisibility.apply($setup, arguments);
+    onClick: _cache[3] || (_cache[3] = function ($event) {
+      return _ctx.isVisible = !_ctx.isVisible;
     }),
     "class": "link-secondary",
     title: "",
@@ -20637,7 +20710,7 @@ var _hoisted_5 = {
 };
 var _hoisted_6 = ["src"];
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"navbar-nav flex-row order-md-last\"><div class=\"d-none d-md-flex\"><a href=\"?theme=dark\" class=\"nav-link px-0 hide-theme-dark\" title=\"\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\" data-bs-original-title=\"Enable dark mode\"><!-- Download SVG icon from http://tabler-icons.io/i/moon --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z\"></path></svg></a><a href=\"?theme=light\" class=\"nav-link px-0 hide-theme-light\" title=\"\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\" data-bs-original-title=\"Enable light mode\"><!-- Download SVG icon from http://tabler-icons.io/i/sun --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"12\" cy=\"12\" r=\"4\"></circle><path d=\"M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7\"></path></svg></a><div class=\"nav-item dropdown d-none d-md-flex me-3\"><a href=\"#\" class=\"nav-link px-0\" data-bs-toggle=\"dropdown\" tabindex=\"-1\" aria-label=\"Show notifications\"><!-- Download SVG icon from http://tabler-icons.io/i/bell --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6\"></path><path d=\"M9 17v1a3 3 0 0 0 6 0v-1\"></path></svg><span class=\"badge bg-red\"></span></a><div class=\"dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card\"><div class=\"card\"><div class=\"card-header\"><h3 class=\"card-title\">Last updates</h3></div><div class=\"list-group list-group-flush list-group-hoverable\"><div class=\"list-group-item\"><div class=\"row align-items-center\"><div class=\"col-auto\"><span class=\"status-dot status-dot-animated bg-red d-block\"></span></div><div class=\"col text-truncate\"><a href=\"#\" class=\"text-body d-block\">Example 1</a><div class=\"d-block text-muted text-truncate mt-n1\"> Change deprecated html tags to text decoration classes (#29604) </div></div><div class=\"col-auto\"><a href=\"#\" class=\"list-group-item-actions\"><!-- Download SVG icon from http://tabler-icons.io/i/star --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-muted\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z\"></path></svg></a></div></div></div><div class=\"list-group-item\"><div class=\"row align-items-center\"><div class=\"col-auto\"><span class=\"status-dot d-block\"></span></div><div class=\"col text-truncate\"><a href=\"#\" class=\"text-body d-block\">Example 2</a><div class=\"d-block text-muted text-truncate mt-n1\"> justify-content:between ⇒ justify-content:space-between (#29734) </div></div><div class=\"col-auto\"><a href=\"#\" class=\"list-group-item-actions show\"><!-- Download SVG icon from http://tabler-icons.io/i/star --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-yellow\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z\"></path></svg></a></div></div></div><div class=\"list-group-item\"><div class=\"row align-items-center\"><div class=\"col-auto\"><span class=\"status-dot d-block\"></span></div><div class=\"col text-truncate\"><a href=\"#\" class=\"text-body d-block\">Example 3</a><div class=\"d-block text-muted text-truncate mt-n1\"> Update change-version.js (#29736) </div></div><div class=\"col-auto\"><a href=\"#\" class=\"list-group-item-actions\"><!-- Download SVG icon from http://tabler-icons.io/i/star --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-muted\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z\"></path></svg></a></div></div></div><div class=\"list-group-item\"><div class=\"row align-items-center\"><div class=\"col-auto\"><span class=\"status-dot status-dot-animated bg-green d-block\"></span></div><div class=\"col text-truncate\"><a href=\"#\" class=\"text-body d-block\">Example 4</a><div class=\"d-block text-muted text-truncate mt-n1\"> Regenerate package-lock.json (#29730) </div></div><div class=\"col-auto\"><a href=\"#\" class=\"list-group-item-actions\"><!-- Download SVG icon from http://tabler-icons.io/i/star --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-muted\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z\"></path></svg></a></div></div></div></div></div></div></div></div><!-- logout dropdown section --><div class=\"nav-item dropdown\"><a href=\"#\" class=\"nav-link d-flex lh-1 text-reset p-0\" data-bs-toggle=\"dropdown\" aria-label=\"Open user menu\"><span class=\"avatar avatar-sm\" style=\"background-image:url(./static/avatars/000m.jpg);\"></span><div class=\"d-none d-xl-block ps-2\"><div>Paweł Kuna</div><div class=\"mt-1 small text-muted\">UI Designer</div></div></a><div class=\"dropdown-menu dropdown-menu-end dropdown-menu-arrow\"><a href=\"#\" class=\"dropdown-item\">Set status</a><a href=\"#\" class=\"dropdown-item\">Profile &amp; account</a><a href=\"#\" class=\"dropdown-item\">Feedback</a><div class=\"dropdown-divider\"></div><a href=\"#\" class=\"dropdown-item\">Settings</a><a href=\"#\" class=\"dropdown-item\">Logout</a></div></div><!--end logout dropdown section --></div>", 1);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"navbar-nav flex-row order-md-last\"><div class=\"d-none d-md-flex\"><a href=\"?theme=dark\" class=\"nav-link px-0 hide-theme-dark\" title=\"\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\" data-bs-original-title=\"Enable dark mode\"><!-- Download SVG icon from http://tabler-icons.io/i/moon --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z\"></path></svg></a><a href=\"?theme=light\" class=\"nav-link px-0 hide-theme-light\" title=\"\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\" data-bs-original-title=\"Enable light mode\"><!-- Download SVG icon from http://tabler-icons.io/i/sun --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"12\" cy=\"12\" r=\"4\"></circle><path d=\"M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7\"></path></svg></a></div><!-- logout dropdown section --><div class=\"nav-item dropdown\"><a href=\"#\" class=\"nav-link d-flex lh-1 text-reset p-0\" data-bs-toggle=\"dropdown\" aria-label=\"Open user menu\"><span class=\"avatar avatar-sm\" style=\"background-image:url(./static/avatars/000m.jpg);\"></span><div class=\"d-none d-xl-block ps-2\"><div>Paweł Kuna</div><div class=\"mt-1 small text-muted\">UI Designer</div></div></a><div class=\"dropdown-menu dropdown-menu-end dropdown-menu-arrow\"><a href=\"#\" class=\"dropdown-item\">Set status</a><a href=\"#\" class=\"dropdown-item\">Profile &amp; account</a><a href=\"#\" class=\"dropdown-item\">Feedback</a><div class=\"dropdown-divider\"></div><a href=\"#\" class=\"dropdown-item\">Settings</a><a href=\"#\" class=\"dropdown-item\">Logout</a></div></div><!--end logout dropdown section --></div>", 1);
 
 var _hoisted_8 = {
   "class": "collapse navbar-collapse",
@@ -20835,6 +20908,7 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_26 = {
+  key: 1,
   "class": "nav-item"
 };
 
@@ -20888,23 +20962,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("template", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })]), !$setup.authState ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 0
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     "class": "nav-link",
     to: {
       name: 'register'
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.authState) + " ", 1
-      /* TEXT */
-      ), _hoisted_21, _hoisted_22];
+      return [_hoisted_21, _hoisted_22];
     }),
     _: 1
     /* STABLE */
 
-  })], 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$setup.authState]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     "class": "nav-link",
     to: {
       name: 'login'
@@ -20916,17 +20988,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })], 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$setup.authState]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("template", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  })])], 64
+  /* STABLE_FRAGMENT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.authState ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "nav-link",
-    type: "button",
     onClick: _cache[0] || (_cache[0] = function () {
       return $setup.handleLogout && $setup.handleLogout.apply($setup, arguments);
     })
-  }, _hoisted_29)], 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.authState.auth]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("end mobile view top menu section  ")])]);
+  }, _hoisted_29)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("end mobile view top menu section  ")])]);
 }
 
 /***/ }),
@@ -21148,6 +21217,30 @@ function useAuth() {
 
 /***/ }),
 
+/***/ "./resources/js/src/composables/useNavigation/index.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/src/composables/useNavigation/index.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useNavigation)
+/* harmony export */ });
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+
+function useNavigation() {
+  var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
+  var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.useRoute)();
+  return {
+    router: router,
+    route: route
+  };
+}
+
+/***/ }),
+
 /***/ "./resources/js/src/routes/routes.js":
 /*!*******************************************!*\
   !*** ./resources/js/src/routes/routes.js ***!
@@ -21181,6 +21274,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var Expense = __webpack_require__.e(/*! import() */ "resources_js_src_Page_Expense_Expense_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/Expense/Expense.vue */ "./resources/js/src/Page/Expense/Expense.vue"));
+var NewExpense = __webpack_require__.e(/*! import() */ "resources_js_src_Page_Expense_NewExpense_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/Expense/NewExpense.vue */ "./resources/js/src/Page/Expense/NewExpense.vue"));
 var routes = [{
   path: "/",
   name: "home",
@@ -21200,6 +21294,13 @@ var routes = [{
   path: "/my-expense",
   name: "expense",
   component: Expense,
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: "/create-expense",
+  name: "new-expense",
+  component: NewExpense,
   meta: {
     requiresAuth: true
   }
@@ -21262,11 +21363,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ store)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 function store() {
-  return {
-    authToken: 'dshygasdgsd',
+  var store = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+    authToken: "sdfasdfasd",
     authState: false
-  };
+  });
+
+  function updateAuthState(authentication_status) {
+    store.authState = authentication_status;
+  }
+
+  return _objectSpread(_objectSpread({}, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toRefs)(store)), {}, {
+    updateAuthState: updateAuthState
+  });
 }
 
 /***/ }),
@@ -44002,7 +44119,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "resources_js_src_Page_Expense_Expense_vue") return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_src_Page_Expense_Expense_vue":1,"resources_js_src_Page_Expense_NewExpense_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
