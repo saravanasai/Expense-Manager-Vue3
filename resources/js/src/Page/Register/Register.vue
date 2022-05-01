@@ -1,20 +1,25 @@
 <template>
   <div class="page page-center">
-    <div class="container-tight py-4">
+    <div class="container-tight">
       <div class="text-center mb-4">
-        <a href="." class="navbar-brand navbar-brand-autodark"
-          ></a>
+        <a href="." class="navbar-brand navbar-brand-autodark"></a>
       </div>
       <form class="card card-md" action="." method="get">
         <div class="card-body">
           <h2 class="card-title text-center mb-4">Create new account</h2>
           <div class="mb-3">
             <label class="form-label">Name</label>
-            <input type="text" class="form-control" placeholder="Enter name" />
+            <input
+              v-model="username"
+              type="text"
+              class="form-control"
+              placeholder="Enter name"
+            />
           </div>
           <div class="mb-3">
             <label class="form-label">Email address</label>
             <input
+              v-model="email"
               type="email"
               class="form-control"
               placeholder="Enter email"
@@ -24,16 +29,15 @@
             <label class="form-label">Password</label>
             <div class="input-group input-group-flat">
               <input
-                type="type"
-                ref="type"
+                v-model="password"
+                :type="isVisible ? 'text' : 'password'"
                 class="form-control"
                 placeholder="Password"
                 autocomplete="off"
               />
               <span class="input-group-text">
-                <button
-                  @click="toggleShowPassword"
-                  type="button"
+                <a
+                  @click="isVisible = !isVisible"
                   class="link-secondary"
                   title=""
                   data-bs-toggle="tooltip"
@@ -57,58 +61,73 @@
                       d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"
                     ></path>
                   </svg>
-                </button>
+                </a>
               </span>
             </div>
           </div>
-          <div class="mb-3">
-            <label class="form-check">
-              <input type="checkbox" class="form-check-input" />
-              <span class="form-check-label"
-                >Agree the
-                <a href="./terms-of-service.html" tabindex="-1"
-                  >terms and policy</a
-                >.</span
-              >
-            </label>
-          </div>
           <div class="form-footer">
-            <button type="submit" class="btn btn-primary w-100">
+            <button
+              type="button"
+              @click="handleLogin"
+              class="btn btn-primary w-100"
+            >
               Create new account
             </button>
           </div>
         </div>
       </form>
       <div class="text-center text-muted mt-3">
-        Already have account? <a href="./sign-in.html" tabindex="-1">Sign in</a>
+        Already have account?
+        <router-link :to="{ name: 'login' }">Log in</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref, toRefs } from '@vue/reactivity';
+import { reactive, toRefs } from "@vue/reactivity";
+import useAuth from "../../composables/useAuth";
+import useNavigation from "../../composables/useNavigation";
+import { inject } from "@vue/runtime-core";
 export default {
+  setup() {
+    const state = reactive({
+      username: "",
+      email: "",
+      password: "",
+      isVisible: false,
+    });
+
+    // inject reactive value
+    const { authState, updateAuthState } = inject("store");
+    const { router, route } = useNavigation();
+
+    let { login, setAuthToken } = useAuth();
+
+    const handleLogin = () => {
+      let data = {
+        name: state.username,
+        email: state.email,
+        password: state.password,
+      };
+
+      login(data)
+        .then((e) => {
+          if (e.status == 200) {
+            setAuthToken(e.data.token);
+            updateAuthState(true);
+            window.location.href= route.query.redirect ? route.query.redirect : '/'
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    };
 
 
-   setup()
-   {
 
-      const state=reactive({
-          passwordVisible:false
-      })
-      let type=ref(null)
-      const toggleShowPassword=()=>{
-          console.log(type.value.type);
-           state.passwordVisible=!state.passwordVisible
-           type=state.passwordVisible ? type.value.type='text' : type.value.type='password'
-           console.log(type);
-      }
-
-       return {type,toggleShowPassword,...toRefs(state)}
-   }
-
-
+    return { ...toRefs(state), handleLogin, authState };
+  },
 };
 </script>
 

@@ -2,18 +2,15 @@
   <MainLayout>
     <template v-slot:top-section>
       <Tittle>
-        <template v-slot:pre-tittle>Home</template>
-        <template v-slot:page-tittle> Expense Manager </template>
+        <template v-slot:pre-tittle>ADD NEW EXPENSE</template>
+        <template v-slot:page-tittle>ADD NEW EXPENSE </template>
         <template v-slot:right-side-content>
           <div class="btn-list">
             <span class="d-none d-sm-inline">
-              <a href="#" class="btn btn-dark"> New view </a>
+              <router-link :to="{name:'home'}" class="btn btn-dark">Home</router-link>
             </span>
-            <a
-              href="#"
-              class="btn btn-primary d-none d-sm-inline-block"
-              data-bs-toggle="modal"
-              data-bs-target="#modal-report"
+            <button class="btn btn-primary"
+             @click="this.$router.go(-1)"
             >
               <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
               <svg
@@ -32,8 +29,8 @@
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
-              Create new report
-            </a>
+               Back
+            </button>
             <a
               href="#"
               class="btn btn-primary d-sm-none btn-icon"
@@ -64,26 +61,24 @@
       </Tittle>
     </template>
     <template v-slot:content>
-        <hero-card/>
+      <div class="card p-5">
+
+      </div>
     </template>
   </MainLayout>
 </template>
 
 <script>
-import Tittle from "../../layout/Tittle/Tittle.vue";
 import MainLayout from "../../layout/Main/Main.vue";
-import HeroCard from "../../../components/Widget/HeroCard/HeroCard.vue";
-import useAuth from "../../composables/useAuth/index"
-import { inject, onMounted } from '@vue/runtime-core';
+import Tittle from "../../layout/Tittle/Tittle.vue";
+import ExpenseCard from "../../../components/Widget/ExpenseCard/ExpenseCard.vue"
 export default {
-  components: { Tittle, MainLayout,HeroCard},
-  setup()
-  {
-
-     return {}
-  }
+  components: { MainLayout, Tittle,ExpenseCard },
+  setup() {
+    return {};
+  },
 };
 </script>
 
-<style lang="scss" scoped>
+<style>
 </style>

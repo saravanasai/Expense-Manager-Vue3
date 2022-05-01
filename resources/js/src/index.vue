@@ -8,8 +8,15 @@
 import Header from "./layout/Header/Header.vue";
 import Footer from "./layout/Footer/Footer.vue";
 
+
 export default {
   components: { Header, Footer},
+  setup()
+  {
+
+
+  }
+
 };
 </script>
 
