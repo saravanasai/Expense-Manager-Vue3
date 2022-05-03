@@ -16,7 +16,7 @@
           pe-0 pe-md-3
         "
       >
-        <a href=".">
+        <router-link :to="{name:'home'}">
           <img
             :src="Logo"
             alt="Expense Manager"
@@ -24,65 +24,12 @@
             width="110"
             height="32"
           />
-        </a>
+        </router-link>
       </h1>
       <div class="navbar-nav flex-row order-md-last">
         <div class="d-none d-md-flex">
-          <a
-            href="?theme=dark"
-            class="nav-link px-0 hide-theme-dark"
-            title=""
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            data-bs-original-title="Enable dark mode"
-          >
-            <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path
-                d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
-              ></path>
-            </svg>
-          </a>
-          <a
-            href="?theme=light"
-            class="nav-link px-0 hide-theme-light"
-            title=""
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            data-bs-original-title="Enable light mode"
-          >
-            <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <circle cx="12" cy="12" r="4"></circle>
-              <path
-                d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
-              ></path>
-            </svg>
-          </a>
+
+
         </div>
         <!-- logout dropdown section -->
         <div class="nav-item dropdown">
@@ -92,23 +39,11 @@
             data-bs-toggle="dropdown"
             aria-label="Open user menu"
           >
-            <span
-              class="avatar avatar-sm"
-              style="background-image: url(./static/avatars/000m.jpg)"
-            ></span>
             <div class="d-none d-xl-block ps-2">
-              <div>Paweł Kuna</div>
-              <div class="mt-1 small text-muted">UI Designer</div>
+              <div>{{userInfo.name}}</div>
+              <div class="mt-1 small text-muted">{{userInfo.email}}</div>
             </div>
           </a>
-          <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-            <a href="#" class="dropdown-item">Set status</a>
-            <a href="#" class="dropdown-item">Profile &amp; account</a>
-            <a href="#" class="dropdown-item">Feedback</a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">Settings</a>
-            <a href="#" class="dropdown-item">Logout</a>
-          </div>
         </div>
         <!--end logout dropdown section -->
       </div>
@@ -153,7 +88,7 @@
                   ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon"
+                    class="icon icon-tabler icon-tabler-vocabulary"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -163,10 +98,20 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
+                    <desc>
+                      Download more icon variants from
+                      https://tabler-icons.io/i/vocabulary
+                    </desc>
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
-                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                    <path
+                      d="M10 19h-6a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1h6a2 2 0 0 1 2 2a2 2 0 0 1 2 -2h6a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-6a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2z"
+                    ></path>
+                    <path d="M12 5v16"></path>
+                    <path d="M7 7h1"></path>
+                    <path d="M7 11h1"></path>
+                    <path d="M16 7h1"></path>
+                    <path d="M16 11h1"></path>
+                    <path d="M16 15h1"></path>
                   </svg>
                 </span>
                 <span class="nav-link-title"> About Us </span>
@@ -178,7 +123,7 @@
                   ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon"
+                    class="icon icon-tabler icon-tabler-businessplan"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -188,19 +133,33 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
+                    <desc>
+                      Download more icon variants from
+                      https://tabler-icons.io/i/businessplan
+                    </desc>
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
-                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                    <ellipse cx="16" cy="6" rx="5" ry="3"></ellipse>
+                    <path
+                      d="M11 6v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4"
+                    ></path>
+                    <path
+                      d="M11 10v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4"
+                    ></path>
+                    <path
+                      d="M11 14v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4"
+                    ></path>
+                    <path
+                      d="M7 9h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5"
+                    ></path>
+                    <path d="M5 15v1m0 -8v1"></path>
                   </svg>
                 </span>
                 <span class="nav-link-title"> My-Expense </span>
               </router-link>
             </li>
             <template v-if="!authState">
-              <li class="nav-item" >
+              <li class="nav-item">
                 <router-link class="nav-link" :to="{ name: 'register' }">
-
                   <span class="nav-link-icon d-md-none d-lg-inline-block"
                     ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                     <svg
@@ -259,8 +218,8 @@
               </li>
             </template>
             <template v-if="authState">
-              <li class="nav-item"  >
-                <a class="nav-link" @click="handleLogout" >
+              <li class="nav-item">
+                <a class="nav-link" @click="handleLogout">
                   <span class="nav-link-icon d-md-none d-lg-inline-block"
                     ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                     <svg
@@ -298,32 +257,37 @@
 </template>
 
 <script>
-import { inject } from '@vue/runtime-core';
+import { inject, onMounted, reactive, ref, toRefs } from "@vue/runtime-core";
 import Logo from "../../assets/logo/logo.jpg";
-import useAuth from '../../composables/useAuth';
-import useNavigation from '../../composables/useNavigation';
+import useAuth from "../../composables/useAuth";
 export default {
   components: {},
   setup() {
-
     // inject reactive value
     const { authState} = inject("store");
-    const { logout,removeAuthToken} = useAuth()
-    const { router,route} = useNavigation()
+    const { logout, removeAuthToken,getUserInfo } = useAuth();
 
-    const handleLogout=()=>{
+    const user=reactive({
+        userInfo:{}
+    })
 
-        logout().then(e=>{
+    onMounted(()=>{
 
-            if(e.status==204)
-            {
-                removeAuthToken()
-                window.location.href='/'
-            }
-        })
-    }
+       user.userInfo=JSON.parse(getUserInfo())
 
-    return { Logo,authState,handleLogout};
+
+    })
+
+    const handleLogout = () => {
+      logout().then((e) => {
+        if (e.status == 204) {
+          removeAuthToken();
+          window.location.href = "/";
+        }
+      });
+    };
+
+    return { Logo, authState, handleLogout,...toRefs(user) };
   },
 };
 </script>
