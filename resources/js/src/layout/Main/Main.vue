@@ -21,6 +21,7 @@ export default {
 
     onMounted(() => {
       if (isAuthenticated()) {
+
         updateAuthState(true);
       } else {
         updateAuthState(false);

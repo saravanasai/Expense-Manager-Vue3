@@ -43,15 +43,13 @@
                   </p>
                 </div>
                 <div class="col-auto">
-                  <a
-              href="#"
-              class="btn btn-primary d-none d-sm-inline-block"
-              data-bs-toggle="modal"
-              data-bs-target="#modal-report"
-            >
-              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-              Track Now
-            </a>
+                  <router-link
+                    :to="{ name: 'new-expense' }"
+                    class="btn btn-primary d-none d-sm-inline-block"
+                  >
+                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                    Track Now
+                  </router-link>
                 </div>
               </div>
             </div>

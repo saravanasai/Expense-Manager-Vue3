@@ -7,7 +7,7 @@
         <template v-slot:right-side-content>
           <div class="btn-list">
             <span class="d-none d-sm-inline">
-              <a href="#" class="btn btn-dark"> New view </a>
+              <a href="#" class="btn btn-dark"> New Expense </a>
             </span>
             <a
               href="#"
@@ -32,7 +32,7 @@
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
-              Create new report
+              Add Income
             </a>
             <a
               href="#"

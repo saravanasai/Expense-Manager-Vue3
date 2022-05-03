@@ -102,7 +102,7 @@ export default {
     const { authState, updateAuthState } = inject("store");
     const { router, route } = useNavigation();
 
-    let { login, setAuthToken } = useAuth();
+    let { registeration, setAuthToken } = useAuth();
 
     const handleLogin = () => {
       let data = {
@@ -111,10 +111,10 @@ export default {
         password: state.password,
       };
 
-      login(data)
+      registeration(data)
         .then((e) => {
           if (e.status == 200) {
-            setAuthToken(e.data.token);
+            setAuthToken(e.data.token,e.data.user);
             updateAuthState(true);
             window.location.href= route.query.redirect ? route.query.redirect : '/'
           }
