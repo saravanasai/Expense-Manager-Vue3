@@ -21,19 +21,7 @@
 
 <body>
     <div class="page" id="app">
-        @include('layouts.Admin.partials.header')
-        <div class="page-wrapper">
-            <div class="container-xl">
-                <!-- Page title -->
-                @include('layouts.Admin.partials.tittle')
-            </div>
-            <div class="page-body">
-                <div class="container-xl">
-                    @yield('page_content')
-                </div>
-            </div>
-            @include('layouts.Admin.partials.footer')
-        </div>
+
     </div>
 
     <!-- Libs JS -->

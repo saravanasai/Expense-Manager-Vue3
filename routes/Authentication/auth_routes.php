@@ -15,3 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//authentication routes
+
+Route::post('user-registeration',[AuthController::class,'register'])->name('register');
+Route::post('user-login',[AuthController::class,'login'])->name('login');
+
+
+Route::group(["prefix"=>"user","middleware"=>"auth:sanctum"],function ()
+{
+    Route::post('user-logout',[AuthController::class,'logout'])->name('logout');
+});

@@ -65,13 +65,16 @@
     <template v-slot:content>
       <div class="card p-5">
         <div class="row row-cards">
-            <div class="col-md-6">
-                <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
+            <div class="col-md-12s" v-if="expenses">
+            <template v-for="expense in expenses" :key="expense.id">
+                <ExpenseCard
+                :amount="expense.expense_amount"
+                :note="expense.expense_note"
+                :category="expense.expense_category.category_name"
+                :created="expense.expense_created_at"
+
+                />
+            </template>
             </div>
         </div>
       </div>
@@ -83,10 +86,21 @@
 import MainLayout from "../../layout/Main/Main.vue";
 import Tittle from "../../layout/Tittle/Tittle.vue";
 import ExpenseCard from "../../../components/Widget/ExpenseCard/ExpenseCard.vue"
+import useExpense from "../../composables/useExpense"
+import { onMounted } from '@vue/runtime-core';
 export default {
   components: { MainLayout, Tittle,ExpenseCard },
   setup() {
-    return {};
+
+    const {isLoading,expenses,getExpense}=useExpense();
+
+    onMounted(()=>{
+
+      getExpense()
+
+    })
+
+    return {expenses,isLoading};
   },
 };
 </script>

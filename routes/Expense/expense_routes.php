@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Expense\ExpenseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//expense related routes
+
+Route::group(["prefix"=>"user","middleware"=>"auth:sanctum"],function ()
+{
+    Route::apiResource('expense',ExpenseController::class);
+});
