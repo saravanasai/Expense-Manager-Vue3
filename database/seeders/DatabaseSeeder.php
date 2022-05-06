@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
             'email'=>'sai@gmail.com',
             'password'=>'1412',
         ]);
-        // \App\Models\User::factory(10)->create();
+
+        $this->call(CategorySeeder::class);
+        $this->call(UserSeeder::class);
+
     }
 }

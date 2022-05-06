@@ -21288,7 +21288,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var token = localStorage.getItem('auth_token');
 var api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
-  baseURL: 'http://127.0.0.1:8000/api/',
+  baseURL: 'http://127.0.0.1:8000/api/v1/',
   timeout: 1000,
   headers: {
     'Accept': 'application/json',

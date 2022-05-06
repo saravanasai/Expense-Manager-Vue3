@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Expense\Expense;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,4 +42,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function Expense()
+    {
+        return $this->hasMany(Expense::class,'user_id','id');
+    }
 }
