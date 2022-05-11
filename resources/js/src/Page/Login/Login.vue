@@ -64,7 +64,13 @@
             </div>
           </div>
           <div class="form-footer">
-            <button type="button" @click="handleLogin" class="btn btn-primary w-100">Log in</button>
+            <button
+              type="button"
+              @click="handleLogin"
+              class="btn btn-primary w-100"
+            >
+              Log in
+            </button>
           </div>
         </div>
       </form>
@@ -81,20 +87,17 @@
 <script>
 import { reactive, toRefs } from "@vue/reactivity";
 import useAuth from "../../composables/useAuth";
-import { inject } from '@vue/runtime-core';
-import useNavigation from '../../composables/useNavigation';
+import { inject } from "@vue/runtime-core";
+import useNavigation from "../../composables/useNavigation";
 export default {
   setup() {
-
-
-
-      // inject reactive value
+    // inject reactive value
     const { updateAuthState } = inject("store");
 
     const state = reactive({ email: "", password: "", isVisible: false });
 
-    const { login,setAuthToken } = useAuth();
-const { router, route } = useNavigation();
+    const { login, setAuthToken } = useAuth();
+    const { router, route } = useNavigation();
 
     const handleLogin = () => {
       let data = {
@@ -102,16 +105,29 @@ const { router, route } = useNavigation();
         password: state.password,
       };
 
-      login(data).then((e) => {
+      login(data)
+        .then((e) => {
           if (e.status == 200) {
-            setAuthToken(e.data.token,e.data.user);
+            setAuthToken(e.data.token, e.data.user);
             updateAuthState(true);
-            window.location.href= route.query.redirect ? route.query.redirect : '/'
+            window.location.href = route.query.redirect
+              ? route.query.redirect
+              : "/";
           }
-      });
+        })
+        .catch((e) => {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: `${e.message}`,
+            toast:true,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        });
     };
 
-    return { ...toRefs(state),handleLogin };
+    return { ...toRefs(state), handleLogin };
   },
 };
 </script>

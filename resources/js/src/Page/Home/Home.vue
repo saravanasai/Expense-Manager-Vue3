@@ -73,8 +73,6 @@
 import Tittle from "../../layout/Tittle/Tittle.vue";
 import MainLayout from "../../layout/Main/Main.vue";
 import HeroCard from "../../../components/Widget/HeroCard/HeroCard.vue";
-import useAuth from "../../composables/useAuth/index"
-import { inject, onMounted } from '@vue/runtime-core';
 export default {
   components: { Tittle, MainLayout,HeroCard},
   setup()
