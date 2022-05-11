@@ -116,11 +116,28 @@ export default {
           if (e.status == 200) {
             setAuthToken(e.data.token,e.data.user);
             updateAuthState(true);
-            window.location.href= route.query.redirect ? route.query.redirect : '/'
+            Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: 'You have Registered',
+            toast:true,
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(e=>{
+              window.location.href= route.query.redirect ? route.query.redirect : '/'
+          })
+
           }
         })
         .catch((e) => {
-          console.log(e);
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: `${e.message}`,
+            toast:true,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
     };
 

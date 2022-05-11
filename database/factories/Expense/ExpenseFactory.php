@@ -17,6 +17,7 @@ class ExpenseFactory extends Factory
     public function definition()
     {
         return [
+            'expense_book_id'=>rand(1,2),
             'expense_category'=>rand(1,10),
             'expense_amount'=>rand(10,10000),
             'expense_note'=>$this->faker->sentence(),
