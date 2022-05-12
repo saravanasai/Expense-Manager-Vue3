@@ -54,7 +54,7 @@ class User extends Authenticatable
      */
     public function ExpenseBook()
     {
-        return $this->hasMany(ExpenseBook::class, 'owner_user_id', 'id');
+        return $this->hasMany(ExpenseBook::class, 'user_id', 'id');
     }
 
     public function Expense()

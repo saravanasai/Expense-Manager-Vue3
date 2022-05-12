@@ -4,12 +4,14 @@ namespace App\Models\Expense;
 
 use App\Models\Category\Category;
 use App\Models\User;
+use App\Traits\ExpenseBook\WithUserBook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
     use HasFactory;
+    use WithUserBook;
 
     protected $with=['Category'];
 

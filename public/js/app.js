@@ -20963,7 +20963,7 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "nav-link-title"
-}, " My-Expense ", -1
+}, " My-Expense-books ", -1
 /* HOISTED */
 );
 
@@ -21102,7 +21102,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     "class": "nav-link",
     to: {
-      name: 'expense'
+      name: 'books'
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -21444,6 +21444,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var Expense = __webpack_require__.e(/*! import() */ "resources_js_src_Page_Expense_Expense_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/Expense/Expense.vue */ "./resources/js/src/Page/Expense/Expense.vue"));
 var NewExpense = __webpack_require__.e(/*! import() */ "resources_js_src_Page_Expense_NewExpense_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/Expense/NewExpense.vue */ "./resources/js/src/Page/Expense/NewExpense.vue"));
+var ExpenseBook = __webpack_require__.e(/*! import() */ "resources_js_src_Page_ExpenseBook_ExpenseBook_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/ExpenseBook/ExpenseBook.vue */ "./resources/js/src/Page/ExpenseBook/ExpenseBook.vue"));
+var NewExpenseBook = __webpack_require__.e(/*! import() */ "resources_js_src_Page_ExpenseBook_NewExpenseBook_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/ExpenseBook/NewExpenseBook.vue */ "./resources/js/src/Page/ExpenseBook/NewExpenseBook.vue"));
 var routes = [{
   path: "/",
   name: "home",
@@ -21463,6 +21465,20 @@ var routes = [{
   path: "/my-expense",
   name: "expense",
   component: Expense,
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: "/my-books",
+  name: "books",
+  component: ExpenseBook,
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: "/create-book",
+  name: "new-book",
+  component: NewExpense,
   meta: {
     requiresAuth: true
   }
@@ -44708,7 +44724,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_src_Page_Expense_Expense_vue":1,"resources_js_src_Page_Expense_NewExpense_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_src_Page_Expense_Expense_vue":1,"resources_js_src_Page_Expense_NewExpense_vue":1,"resources_js_src_Page_ExpenseBook_ExpenseBook_vue":1,"resources_js_src_Page_ExpenseBook_NewExpenseBook_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

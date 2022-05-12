@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Expense\Expense;
+use App\Models\ExpenseBook\ExpenseBook;
+use App\Observers\Expense\ExpenseObserver;
+use App\Observers\ExpenseBook\ExpenseBookObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //  Expense::observe(ExpenseObserver::class);
+        //  ExpenseBook::observe(ExpenseBookObserver::class);
     }
 }
