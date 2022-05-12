@@ -23,6 +23,7 @@ class RouteServiceProvider extends ServiceProvider
 
         ['folder_name'=>'Authentication','file_name'=>'auth_routes'],
         ['folder_name'=>'Expense','file_name'=>'expense_routes'],
+        ['folder_name'=>'ExpenseBook','file_name'=>'expense_book_routes'],
     ];
     /**
      * The controller namespace for the application.

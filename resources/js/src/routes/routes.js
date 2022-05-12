@@ -10,6 +10,8 @@ import NotFound from "../Page/404/404.vue";
 
 const Expense = import('../Page/Expense/Expense.vue');
 const NewExpense = import('../Page/Expense/NewExpense.vue');
+const ExpenseBook = import('../Page/ExpenseBook/ExpenseBook.vue');
+const NewExpenseBook = import('../Page/ExpenseBook/NewExpenseBook.vue');
 
 
 const routes = [
@@ -33,6 +35,18 @@ const routes = [
         path: "/my-expense",
         name: "expense",
         component: Expense,
+        meta:{requiresAuth: true}
+    },
+    {
+        path: "/my-books",
+        name: "books",
+        component: ExpenseBook,
+        meta:{requiresAuth: true}
+    },
+    {
+        path: "/create-book",
+        name: "new-book",
+        component: NewExpense,
         meta:{requiresAuth: true}
     },
     {

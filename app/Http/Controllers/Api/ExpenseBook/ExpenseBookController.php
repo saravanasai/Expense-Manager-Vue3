@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api\Expense;
+namespace App\Http\Controllers\Api\ExpenseBook;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Expense\ExpenseResource;
-use App\Models\Expense\Expense;
+use App\Http\Resources\ExpenseBook\ExpenseBookResource;
+use App\Models\ExpenseBook\ExpenseBook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
-class ExpenseController extends Controller
+class ExpenseBookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +17,12 @@ class ExpenseController extends Controller
      */
     public function index(Request $request)
     {
-        $expense=Cache::rememberForever("expenseList".$request->user()->id,function() use ($request)
+        $expense_book=Cache::rememberForever("expenseBook".$request->user()->id,function() use ($request)
         {
-            return Expense::all();
+            return ExpenseBook::all();
         });
 
-        return ExpenseResource::collection($expense);
+        return ExpenseBookResource::collection($expense_book);
     }
 
     /**

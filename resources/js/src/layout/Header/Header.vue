@@ -118,7 +118,7 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'expense' }">
+              <router-link class="nav-link" :to="{ name: 'books' }">
                 <span class="nav-link-icon d-md-none d-lg-inline-block"
                   ><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                   <svg
@@ -154,7 +154,7 @@
                     <path d="M5 15v1m0 -8v1"></path>
                   </svg>
                 </span>
-                <span class="nav-link-title"> My-Expense </span>
+                <span class="nav-link-title"> My-Expense-books </span>
               </router-link>
             </li>
             <template v-if="!authState">

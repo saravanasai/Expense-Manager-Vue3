@@ -15,8 +15,8 @@ class CreateExpenseBooksTable extends Migration
     {
         Schema::create('expense_books', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('owner_user_id')->comment('owner of the book');
-            $table->foreign('owner_user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id')->comment('owner of the book');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('book_name')->comment('name of the book');
             $table->softDeletes();
             $table->timestamps();
