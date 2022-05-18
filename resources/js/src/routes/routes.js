@@ -46,7 +46,7 @@ const routes = [
     {
         path: "/create-book",
         name: "new-book",
-        component: NewExpense,
+        component: NewExpenseBook,
         meta:{requiresAuth: true}
     },
     {

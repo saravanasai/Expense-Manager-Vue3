@@ -12,7 +12,7 @@
             <router-link
 
               class="btn btn-primary d-none d-sm-inline-block"
-              :to="{name:'new-book',params: { path: '' } }"
+              :to="{name:'new-book' }"
             >
               <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
               <svg
@@ -65,10 +65,10 @@
     <template v-slot:content>
       <div class="card p-5">
         <div class="row row-cards">
-            <div class="col-md-4" v-if="expenseBooks">
+            <div class="col-md-10 offset-md-1" v-if="expenseBooks">
             <template v-for="book in expenseBooks" :key="book.id">
                 <BookCard
-                :color="'danger'"
+                :bookId="book.id"
                 :bookName="book.book"
                 :bookOwner="book.user.name"
                 />
@@ -89,6 +89,8 @@ import { onMounted } from '@vue/runtime-core';
 export default {
   components: { MainLayout, Tittle,BookCard },
   setup() {
+
+
 
     const {isLoading,expenseBooks,getExpenseBooks}=useExpenseBook();
 

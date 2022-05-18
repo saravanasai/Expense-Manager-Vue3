@@ -13,11 +13,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    color: String,
+    bookId: Number,
     bookName: String,
     bookOwner: String
   },
-  setup: function setup() {}
+  setup: function setup() {
+    var colorsList = ['lime', 'warning', 'primary', 'dark', 'pink', 'blue', 'indigo', 'purple', 'azure', 'red', 'orange'];
+    return {
+      colorsList: colorsList
+    };
+  }
 });
 
 /***/ }),
@@ -79,39 +84,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "card card-sm m-2"
+  "class": "card mb-2"
 };
 var _hoisted_2 = {
   "class": "card-body"
 };
 var _hoisted_3 = {
-  "class": "row align-items-center"
+  "class": "row g-2 align-items-center"
 };
 var _hoisted_4 = {
   "class": "col-auto"
 };
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><desc> Download more icon variants from https://tabler-icons.io/i/message </desc><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4\"></path><line x1=\"8\" y1=\"9\" x2=\"16\" y2=\"9\"></line><line x1=\"8\" y1=\"13\" x2=\"14\" y2=\"13\"></line></svg>", 1);
-
-var _hoisted_6 = {
+var _hoisted_5 = {
   "class": "col"
 };
+var _hoisted_6 = {
+  "class": "card-title m-0"
+};
 var _hoisted_7 = {
-  "class": "font-weight-medium"
+  href: "#"
 };
 var _hoisted_8 = {
   "class": "text-muted"
 };
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-auto\"><a href=\"#\" class=\"btn\"> Add Income </a></div><div class=\"col-auto\"><a href=\"#\" class=\"btn\"> Add Expense </a></div><div class=\"col-auto\"><div class=\"dropdown\"><a href=\"#\" class=\"btn-action\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><desc>Download more icon variants from https://tabler-icons.io/i/dots-vertical</desc><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"12\" cy=\"12\" r=\"1\"></circle><circle cx=\"12\" cy=\"19\" r=\"1\"></circle><circle cx=\"12\" cy=\"5\" r=\"1\"></circle></svg></a><div class=\"dropdown-menu dropdown-menu-end\"><a href=\"#\" class=\"dropdown-item\">Edit</a><a href=\"#\" class=\"dropdown-item text-danger\">Delete</a></div></div></div>", 3);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)("bg-".concat($props.color, " text-white avatar"))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Download SVG icon from http://tabler-icons.io/i/message "), _hoisted_5], 2
-  /* CLASS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, "Book Name : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookName), 1
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)("avatar avatar-lg rounded bg-".concat($setup.colorsList[Math.floor(Math.random() * 10 + 1)]))
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookName[0]) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookName[1]), 3
+  /* TEXT, CLASS */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookName), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, "Onwer:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookOwner), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, " Owner : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookOwner), 1
   /* TEXT */
-  )])])])]);
+  )]), _hoisted_9])])]);
 }
 
 /***/ }),
@@ -220,7 +228,7 @@ var _hoisted_9 = {
 };
 var _hoisted_10 = {
   key: 0,
-  "class": "col-md-4"
+  "class": "col-md-10 offset-md-1"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -244,10 +252,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
             "class": "btn btn-primary d-none d-sm-inline-block",
             to: {
-              name: 'new-book',
-              params: {
-                path: ''
-              }
+              name: 'new-book'
             }
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -267,12 +272,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [$setup.expenseBooks ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.expenseBooks, function (book) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BookCard, {
           key: book.id,
-          color: 'danger',
+          bookId: book.id,
           bookName: book.book,
           bookOwner: book.user.name
         }, null, 8
         /* PROPS */
-        , ["bookName", "bookOwner"]);
+        , ["bookId", "bookName", "bookOwner"]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])];

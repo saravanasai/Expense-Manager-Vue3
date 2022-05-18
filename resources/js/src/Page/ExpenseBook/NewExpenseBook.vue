@@ -12,7 +12,7 @@
             <router-link
 
               class="btn btn-primary d-none d-sm-inline-block"
-              :to="{name:'book'}"
+              :to="{name:'books'}"
             >
               <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
               <svg
@@ -64,19 +64,32 @@
     </template>
     <template v-slot:content>
       <div class="card p-5">
-        <div class="row row-cards">
-            <div class="col-md-12s" v-if="expenses">
-            <template v-for="expense in expenses" :key="expense.id">
-                <ExpenseCard
-                :amount="expense.expense_amount"
-                :note="expense.expense_note"
-                :category="expense.expense_category.category_name"
-                :created="expense.expense_created_at"
+          <div class="card">
+                <div class="card-header bg-dark">
+                  <h3 class="card-title">New Expense Book</h3>
+                </div>
+                <div class="card-body mt-2">
+                  <form>
+                    <div class="form-group mb-3 row">
+                      <label class="form-label col-3 col-form-label">Book Name</label>
+                      <div class="col">
+                        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Book Name">
+                      </div>
+                    </div>
+                    <div class="form-group mb-3 row">
+                      <label class="form-label col-3 col-form-label">Description</label>
+                      <div class="col">
+                        <textarea class="form-control" name="example-textarea-input" rows="4" placeholder="Content..">
 
-                />
-            </template>
-            </div>
-        </div>
+                        </textarea>
+                      </div>
+                    </div>
+                    <div class="form-footer">
+                      <button type="button" class="btn btn-success float-end">Create</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
       </div>
     </template>
   </MainLayout>
