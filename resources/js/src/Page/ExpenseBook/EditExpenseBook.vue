@@ -2,8 +2,8 @@
     <MainLayout>
         <template v-slot:top-section>
             <Tittle>
-                <template v-slot:pre-tittle>Add Book</template>
-                <template v-slot:page-tittle>New Book</template>
+                <template v-slot:pre-tittle>Edit Book</template>
+                <template v-slot:page-tittle>EditBook</template>
                 <template v-slot:right-side-content>
                     <div class="btn-list">
                         <span class="d-none d-sm-inline">
@@ -39,29 +39,29 @@
             <div class="card p-5">
                 <div class="card">
                     <div class="card-header bg-dark">
-                        <h3 class="card-title">New Expense Book</h3>
+                        <h3 class="card-title">Edit Expense Book</h3>
                     </div>
                     <div class="card-body mt-2">
                         <form>
                             <div class="form-group mb-3 row">
                                 <label class="form-label col-3 col-form-label">Book Name</label>
                                 <div class="col">
-                                    <input type="text" v-model="bookName" class="form-control"
+                                    <input type="text" v-model="expenseBook.book" class="form-control"
                                         aria-describedby="emailHelp" placeholder="Enter Book Name">
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
                                 <label class="form-label col-3 col-form-label">Description</label>
                                 <div class="col">
-                                    <textarea class="form-control" v-model="bookDescription"
+                                    <textarea class="form-control" v-model="expenseBook.description"
                                         name="example-textarea-input" rows="4" placeholder="Content..">
 
                         </textarea>
                                 </div>
                             </div>
                             <div class="form-footer">
-                                <button type="button" @click="handleAddBook"
-                                    class="btn btn-success float-end">Create</button>
+                                <button type="button" @click="handleUpdateBook"
+                                    class="btn btn-success float-end">Update</button>
                             </div>
                         </form>
                     </div>
@@ -79,9 +79,13 @@ import useExpenseBook from "../../composables/useExpenseBook"
 import { reactive, toRefs } from '@vue/reactivity';
 import Swal from "sweetalert2";
 import useNavigation from "../../composables/useNavigation";
+import { onMounted } from "vue";
 export default {
+    props:{
+        id:Number,
+    },
     components: { MainLayout, Tittle, ExpenseCard },
-    setup() {
+    setup(props) {
 
 
         const state = reactive({
@@ -89,19 +93,19 @@ export default {
             bookDescription:''
         })
 
-        const { isLoading, addExpenseBooks, } = useExpenseBook();
+        const { isLoading, expenseBook,getExpenseBook,updateExpenseBook } = useExpenseBook();
         const {route,router}=useNavigation()
 
-        const handleAddBook = () => {
 
-            let data = {
-                book_name:state.bookName,
-                book_description:state.bookDescription
-            }
+        onMounted(()=>{
+            getExpenseBook(props.id)
+        })
 
-            addExpenseBooks(data)
+        const handleUpdateBook = () => {
+
+            updateExpenseBook()
                 .then(e => {
-                    if (e.status == 201) {
+                    if (e.status == 200) {
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
@@ -111,7 +115,6 @@ export default {
                             timer: 1500,
                         })
                         .then(e=>{
-
                             router.push({name:'books'})
                         });
                     }
@@ -122,7 +125,7 @@ export default {
         }
 
 
-        return { isLoading, ...toRefs(state), handleAddBook };
+        return { isLoading, ...toRefs(state), handleUpdateBook,expenseBook };
     },
 };
 </script>

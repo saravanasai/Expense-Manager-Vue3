@@ -19562,7 +19562,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony import */ var _layout_Tittle_Tittle_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layout/Tittle/Tittle.vue */ "./resources/js/src/layout/Tittle/Tittle.vue");
+/* harmony import */ var _layout_Main_Main_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../layout/Main/Main.vue */ "./resources/js/src/layout/Main/Main.vue");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Tittle: _layout_Tittle_Tittle_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    MainLayout: _layout_Main_Main_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
+});
 
 /***/ }),
 
@@ -20066,56 +20075,119 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("About");
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" About Expense Manager ");
+
+var _hoisted_3 = {
+  "class": "btn-list"
+};
+var _hoisted_4 = {
+  "class": "d-none d-sm-inline"
+};
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Home ");
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Back ");
+
+var _hoisted_7 = {
   "class": "page page-center"
 };
-var _hoisted_2 = {
+var _hoisted_8 = {
   "class": "container-tight py-4"
 };
-var _hoisted_3 = {
+var _hoisted_9 = {
   "class": "empty"
 };
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "empty-header"
 }, "404", -1
 /* HOISTED */
 );
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "empty-title"
 }, "Oops… You just found an error page", -1
 /* HOISTED */
 );
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "empty-subtitle text-muted"
 }, " We are sorry but the page you are looking for was not found ", -1
 /* HOISTED */
 );
 
-var _hoisted_7 = {
+var _hoisted_13 = {
   "class": "empty-action"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Take me home ");
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Take me home ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _this = this;
+
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, _hoisted_5, _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: {
-      name: 'home'
-    },
-    "class": "btn btn-primary"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_8];
+  var _component_Tittle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Tittle");
+
+  var _component_MainLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("MainLayout");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_MainLayout, null, {
+    "top-section": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Tittle, null, {
+        "pre-tittle": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_1];
+        }),
+        "page-tittle": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_2];
+        }),
+        "right-side-content": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+            to: {
+              name: 'home'
+            },
+            "class": "btn btn-dark"
+          }, {
+            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+              return [_hoisted_5];
+            }),
+            _: 1
+            /* STABLE */
+
+          })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+            type: "button",
+            "class": "btn btn-primary d-none d-sm-inline-block",
+            onClick: _cache[0] || (_cache[0] = function ($event) {
+              return _this.$router.go(-1);
+            })
+          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Download SVG icon from http://tabler-icons.io/i/plus "), _hoisted_6])])];
+        }),
+        _: 1
+        /* STABLE */
+
+      })];
+    }),
+    content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, _hoisted_11, _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+        to: {
+          name: 'home'
+        },
+        "class": "btn btn-primary"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_14];
+        }),
+        _: 1
+        /* STABLE */
+
+      })])])])])];
     }),
     _: 1
     /* STABLE */
 
-  })])])])]);
+  });
 }
 
 /***/ }),
@@ -21446,6 +21518,7 @@ var Expense = __webpack_require__.e(/*! import() */ "resources_js_src_Page_Expen
 var NewExpense = __webpack_require__.e(/*! import() */ "resources_js_src_Page_Expense_NewExpense_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/Expense/NewExpense.vue */ "./resources/js/src/Page/Expense/NewExpense.vue"));
 var ExpenseBook = __webpack_require__.e(/*! import() */ "resources_js_src_Page_ExpenseBook_ExpenseBook_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/ExpenseBook/ExpenseBook.vue */ "./resources/js/src/Page/ExpenseBook/ExpenseBook.vue"));
 var NewExpenseBook = __webpack_require__.e(/*! import() */ "resources_js_src_Page_ExpenseBook_NewExpenseBook_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/ExpenseBook/NewExpenseBook.vue */ "./resources/js/src/Page/ExpenseBook/NewExpenseBook.vue"));
+var EditExpenseBook = __webpack_require__.e(/*! import() */ "resources_js_src_Page_ExpenseBook_EditExpenseBook_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/ExpenseBook/EditExpenseBook.vue */ "./resources/js/src/Page/ExpenseBook/EditExpenseBook.vue"));
 var routes = [{
   path: "/",
   name: "home",
@@ -21472,6 +21545,14 @@ var routes = [{
   path: "/my-books",
   name: "books",
   component: ExpenseBook,
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: "/my-books/show/:id",
+  name: "book",
+  props: true,
+  component: EditExpenseBook,
   meta: {
     requiresAuth: true
   }
@@ -44724,7 +44805,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_src_Page_Expense_Expense_vue":1,"resources_js_src_Page_Expense_NewExpense_vue":1,"resources_js_src_Page_ExpenseBook_ExpenseBook_vue":1,"resources_js_src_Page_ExpenseBook_NewExpenseBook_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_src_Page_Expense_Expense_vue":1,"resources_js_src_Page_Expense_NewExpense_vue":1,"resources_js_src_Page_ExpenseBook_ExpenseBook_vue":1,"resources_js_src_Page_ExpenseBook_NewExpenseBook_vue":1,"resources_js_src_Page_ExpenseBook_EditExpenseBook_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

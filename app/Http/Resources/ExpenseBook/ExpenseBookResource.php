@@ -18,6 +18,7 @@ class ExpenseBookResource extends JsonResource
         return [
             "id"=>$this->id,
             "book"=>$this->book_name,
+            "description"=>$this->book_description,
             "user"=>UserResource::make($this->whenLoaded('user'))
         ];
     }

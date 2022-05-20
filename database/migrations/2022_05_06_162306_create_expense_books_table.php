@@ -18,6 +18,7 @@ class CreateExpenseBooksTable extends Migration
             $table->unsignedBigInteger('user_id')->comment('owner of the book');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('book_name')->comment('name of the book');
+            $table->string('book_description')->default(null)->nullable()->comment('description of the book');
             $table->softDeletes();
             $table->timestamps();
         });

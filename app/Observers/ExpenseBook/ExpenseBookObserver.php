@@ -3,7 +3,9 @@
 namespace App\Observers\ExpenseBook;
 
 use App\Models\ExpenseBook\ExpenseBook;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class ExpenseBookObserver
 {
@@ -15,7 +17,8 @@ class ExpenseBookObserver
      */
     public function created(ExpenseBook $expenseBook)
     {
-        Cache::forget("expenseBook".request()->user()->id);
+
+        Cache::forget("expenseBook_".Auth::user()->id);
     }
 
     /**
@@ -26,7 +29,7 @@ class ExpenseBookObserver
      */
     public function updated(ExpenseBook $expenseBook)
     {
-        Cache::forget("expenseBook".request()->user()->id);
+        Cache::forget("expenseBook_".Auth::user()->id);
     }
 
     /**
@@ -37,7 +40,7 @@ class ExpenseBookObserver
      */
     public function deleted(ExpenseBook $expenseBook)
     {
-        Cache::forget("expenseBook".request()->user()->id);
+        Cache::forget("expenseBook_".Auth::user()->id);
     }
 
     /**
@@ -48,7 +51,7 @@ class ExpenseBookObserver
      */
     public function restored(ExpenseBook $expenseBook)
     {
-        Cache::forget("expenseBook".request()->user()->id);
+        Cache::forget("expenseBook_".Auth::user()->id);
     }
 
     /**
@@ -59,6 +62,6 @@ class ExpenseBookObserver
      */
     public function forceDeleted(ExpenseBook $expenseBook)
     {
-        Cache::forget("expenseBook".request()->user()->id);
+        Cache::forget("expenseBook_".Auth::user()->id);
     }
 }

@@ -12,6 +12,7 @@ const Expense = import('../Page/Expense/Expense.vue');
 const NewExpense = import('../Page/Expense/NewExpense.vue');
 const ExpenseBook = import('../Page/ExpenseBook/ExpenseBook.vue');
 const NewExpenseBook = import('../Page/ExpenseBook/NewExpenseBook.vue');
+const EditExpenseBook = import('../Page/ExpenseBook/EditExpenseBook.vue');
 
 
 const routes = [
@@ -41,6 +42,13 @@ const routes = [
         path: "/my-books",
         name: "books",
         component: ExpenseBook,
+        meta:{requiresAuth: true}
+    },
+    {
+        path: "/my-books/show/:id",
+        name: "book",
+        props:true,
+        component: EditExpenseBook,
         meta:{requiresAuth: true}
     },
     {

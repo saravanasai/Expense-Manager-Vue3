@@ -9,9 +9,10 @@
                     <h4 class="card-title m-0">
                         <a href="#">{{bookName}}</a>
                     </h4>
-                    <div class="text-muted">
-                        Owner : {{bookOwner}}
+                    <div class="text">
+                        {{bookDescription}}
                     </div>
+
 
                 </div>
                 <div class="col-auto">
@@ -39,10 +40,17 @@
                             </svg>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <a href="#" class="dropdown-item">Edit</a>
-                            <a href="#" class="dropdown-item text-danger">Delete</a>
+                            <router-link :to="{name:'book',params:{id:bookId}}" class="dropdown-item">Edit</router-link>
+                            <a @click.prevent="()=>handleDeleteExpenseBook(bookId)" class="dropdown-item text-danger">Delete</a>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-flex justify-content-end">
+                   <div class="text-mute px-4">
+                        <b>Owner : </b>{{bookOwner}}
+                   </div>
                 </div>
             </div>
         </div>
@@ -55,7 +63,9 @@ export default {
     props: {
         bookId:Number,
         bookName: String,
+        bookDescription: String,
         bookOwner: String,
+        handleDeleteExpenseBook:Function,
 
 
     },

@@ -70,7 +70,9 @@
                 <BookCard
                 :bookId="book.id"
                 :bookName="book.book"
+                :bookDescription="book.description"
                 :bookOwner="book.user.name"
+                :handleDeleteExpenseBook="handleDeleteExpenseBook"
                 />
             </template>
             </div>
@@ -92,7 +94,7 @@ export default {
 
 
 
-    const {isLoading,expenseBooks,getExpenseBooks}=useExpenseBook();
+    const {isLoading,expenseBooks,getExpenseBooks,deleteExpenseBook}=useExpenseBook();
 
     onMounted(()=>{
 
@@ -100,7 +102,29 @@ export default {
 
     })
 
-    return {expenseBooks,isLoading};
+
+   const handleDeleteExpenseBook=(id)=>{
+       deleteExpenseBook(id)
+       .then(e=>{
+           if(e.status==204)
+           {
+               getExpenseBooks()
+               Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: `Expense Book Deleted`,
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
+                        .then(e=>{
+
+                        });
+           }
+       })
+   }
+
+    return {expenseBooks,isLoading,handleDeleteExpenseBook};
   },
 };
 </script>
