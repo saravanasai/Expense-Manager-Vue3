@@ -18,7 +18,8 @@ class ExpenseBookFactory extends Factory
     public function definition()
     {
         return [
-            'book_name'=>$this->faker->userName()
+            'book_name'=>$this->faker->userName(),
+            'book_description'=>$this->faker->sentence(),
         ];
     }
 }

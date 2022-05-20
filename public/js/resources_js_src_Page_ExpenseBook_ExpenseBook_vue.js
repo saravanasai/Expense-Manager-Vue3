@@ -15,7 +15,9 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     bookId: Number,
     bookName: String,
-    bookOwner: String
+    bookDescription: String,
+    bookOwner: String,
+    handleDeleteExpenseBook: Function
   },
   setup: function setup() {
     var colorsList = ['lime', 'warning', 'primary', 'dark', 'pink', 'blue', 'indigo', 'purple', 'azure', 'red', 'orange'];
@@ -57,14 +59,33 @@ __webpack_require__.r(__webpack_exports__);
     var _useExpenseBook = (0,_composables_useExpenseBook__WEBPACK_IMPORTED_MODULE_3__["default"])(),
         isLoading = _useExpenseBook.isLoading,
         expenseBooks = _useExpenseBook.expenseBooks,
-        getExpenseBooks = _useExpenseBook.getExpenseBooks;
+        getExpenseBooks = _useExpenseBook.getExpenseBooks,
+        deleteExpenseBook = _useExpenseBook.deleteExpenseBook;
 
     (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_4__.onMounted)(function () {
       getExpenseBooks();
     });
+
+    var handleDeleteExpenseBook = function handleDeleteExpenseBook(id) {
+      deleteExpenseBook(id).then(function (e) {
+        if (e.status == 204) {
+          getExpenseBooks();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Expense Book Deleted",
+            toast: true,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function (e) {});
+        }
+      });
+    };
+
     return {
       expenseBooks: expenseBooks,
-      isLoading: isLoading
+      isLoading: isLoading,
+      handleDeleteExpenseBook: handleDeleteExpenseBook
     };
   }
 });
@@ -105,21 +126,92 @@ var _hoisted_7 = {
   href: "#"
 };
 var _hoisted_8 = {
-  "class": "text-muted"
+  "class": "text"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-auto\"><a href=\"#\" class=\"btn\"> Add Income </a></div><div class=\"col-auto\"><a href=\"#\" class=\"btn\"> Add Expense </a></div><div class=\"col-auto\"><div class=\"dropdown\"><a href=\"#\" class=\"btn-action\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><desc>Download more icon variants from https://tabler-icons.io/i/dots-vertical</desc><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"12\" cy=\"12\" r=\"1\"></circle><circle cx=\"12\" cy=\"19\" r=\"1\"></circle><circle cx=\"12\" cy=\"5\" r=\"1\"></circle></svg></a><div class=\"dropdown-menu dropdown-menu-end\"><a href=\"#\" class=\"dropdown-item\">Edit</a><a href=\"#\" class=\"dropdown-item text-danger\">Delete</a></div></div></div>", 3);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-auto"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "#",
+  "class": "btn"
+}, " Add Income ")], -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-auto"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "#",
+  "class": "btn"
+}, " Add Expense ")], -1
+/* HOISTED */
+);
+
+var _hoisted_11 = {
+  "class": "col-auto"
+};
+var _hoisted_12 = {
+  "class": "dropdown"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<a href=\"#\" class=\"btn-action\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><desc>Download more icon variants from https://tabler-icons.io/i/dots-vertical</desc><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"12\" cy=\"12\" r=\"1\"></circle><circle cx=\"12\" cy=\"19\" r=\"1\"></circle><circle cx=\"12\" cy=\"5\" r=\"1\"></circle></svg></a>", 1);
+
+var _hoisted_14 = {
+  "class": "dropdown-menu dropdown-menu-end"
+};
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit");
+
+var _hoisted_16 = {
+  "class": "row"
+};
+var _hoisted_17 = {
+  "class": "d-flex justify-content-end"
+};
+var _hoisted_18 = {
+  "class": "text-mute px-4"
+};
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Owner : ", -1
+/* HOISTED */
+);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)("avatar avatar-lg rounded bg-".concat($setup.colorsList[Math.floor(Math.random() * 10 + 1)]))
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookName[0]) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookName[1]), 3
   /* TEXT, CLASS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookName), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, " Owner : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookOwner), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookDescription), 1
   /* TEXT */
-  )]), _hoisted_9])])]);
+  )]), _hoisted_9, _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'book',
+      params: {
+        id: $props.bookId
+      }
+    },
+    "class": "dropdown-item"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_15];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $props.handleDeleteExpenseBook($props.bookId);
+    }, ["prevent"])),
+    "class": "dropdown-item text-danger"
+  }, "Delete")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookOwner), 1
+  /* TEXT */
+  )])])])])]);
 }
 
 /***/ }),
@@ -274,10 +366,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: book.id,
           bookId: book.id,
           bookName: book.book,
-          bookOwner: book.user.name
+          bookDescription: book.description,
+          bookOwner: book.user.name,
+          handleDeleteExpenseBook: $setup.handleDeleteExpenseBook
         }, null, 8
         /* PROPS */
-        , ["bookId", "bookName", "bookOwner"]);
+        , ["bookId", "bookName", "bookDescription", "bookOwner", "handleDeleteExpenseBook"]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])];
@@ -311,9 +405,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 function useExpenseBook() {
-  var url = "/user/expense-book";
+  var url = "/user/expense-book/";
   var state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
     expenseBooks: {},
+    expenseBook: {},
     isLoading: true
   });
 
@@ -324,8 +419,39 @@ function useExpenseBook() {
     });
   };
 
+  var addExpenseBooks = function addExpenseBooks(data) {
+    state.isLoading = true;
+    return _config__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, data);
+  };
+
+  var getExpenseBook = function getExpenseBook(id) {
+    state.isLoading = true;
+    _config__WEBPACK_IMPORTED_MODULE_1__["default"].get(url + id).then(function (e) {
+      state.expenseBook = e.data.data;
+      state.isLoading = false;
+    });
+  };
+
+  var updateExpenseBook = function updateExpenseBook() {
+    var data = {
+      book_name: state.expenseBook.book,
+      book_description: state.expenseBook.description
+    };
+    state.isLoading = true;
+    return _config__WEBPACK_IMPORTED_MODULE_1__["default"].put(url + state.expenseBook.id, data);
+  };
+
+  var deleteExpenseBook = function deleteExpenseBook(id) {
+    state.isLoading = true;
+    return _config__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"](url + id);
+  };
+
   return _objectSpread(_objectSpread({}, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toRefs)(state)), {}, {
-    getExpenseBooks: getExpenseBooks
+    getExpenseBooks: getExpenseBooks,
+    addExpenseBooks: addExpenseBooks,
+    getExpenseBook: getExpenseBook,
+    updateExpenseBook: updateExpenseBook,
+    deleteExpenseBook: deleteExpenseBook
   });
 }
 

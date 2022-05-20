@@ -17,8 +17,8 @@ class ExpenseBookController extends Controller
      */
     public function index(Request $request)
     {
-        $expense_book=Cache::rememberForever("expenseBook".$request->user()->id,function() use ($request)
-        {
+        // dd("expenseBook_" . $request->user()->id);
+        $expense_book = Cache::rememberForever("expenseBook_" . $request->user()->id, function (){
             return ExpenseBook::all();
         });
 
@@ -33,7 +33,16 @@ class ExpenseBookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'book_name' => ['required'],
+            'book_description' =>['sometimes'],
+        ]);
+
+        $is_stored = ExpenseBook::create($request->all());
+
+        return $is_stored
+            ? response()->json(['message' => 'New Book Created', 'data' => $request->all()], 201)
+            : response()->json(['message' => 'something went wrong'], 500);
     }
 
     /**
@@ -44,7 +53,10 @@ class ExpenseBookController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $expense_book = ExpenseBook::find($id);
+
+        return ExpenseBookResource::make($expense_book);
     }
 
     /**
@@ -56,7 +68,16 @@ class ExpenseBookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'book_name' => ['required'],
+            'book_description' =>['sometimes'],
+        ]);
+
+        $is_updated = ExpenseBook::find($id)->update($request->all());
+
+        return $is_updated
+            ? response()->json(['message' => 'updated', 'data' => $request->all()], 200)
+            : response()->json(['message' => 'something went wrong'], 500);
     }
 
     /**
@@ -67,6 +88,8 @@ class ExpenseBookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ExpenseBook::destroy($id);
+
+        return response()->noContent();
     }
 }
