@@ -1,4 +1,5 @@
 import { reactive, toRefs } from "vue"
+
 import api from "../../../config"
 
 export default function useExpenseBook() {
@@ -10,7 +11,7 @@ export default function useExpenseBook() {
         isLoading: true
     })
 
-    const getExpenseBooks = () => {
+    const getExpenseBooks = async () => {
         api.get(url).then(e => {
             state.expenseBooks = e.data.data
             state.isLoading = false
@@ -39,7 +40,7 @@ export default function useExpenseBook() {
         return api.put(url + state.expenseBook.id, data)
     }
 
-    const deleteExpenseBook = (id) => {
+    const deleteExpenseBook = id => {
         state.isLoading = true
         return api.delete(url + id)
     }

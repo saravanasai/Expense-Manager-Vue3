@@ -7,7 +7,7 @@ export default function useExpense() {
 
     const state = reactive({
         expenses: {},
-        isLoading:true
+        isLoadingExpense:true
     })
 
     const getExpense = () => {
@@ -16,10 +16,18 @@ export default function useExpense() {
             .then(e => {
 
             state.expenses = e.data.data
-            state.isLoading = false
+            state.isLoadingExpense = false
 
         })
     }
 
-    return {...toRefs(state),getExpense}
+
+
+    const addExpense = data => {
+        state.isLoadingExpense = true
+        return api.post(url, data)
+    }
+
+
+    return {...toRefs(state),getExpense,addExpense}
 }

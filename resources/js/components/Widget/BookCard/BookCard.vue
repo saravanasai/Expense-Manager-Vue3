@@ -16,12 +16,12 @@
 
                 </div>
                 <div class="col-auto">
-                    <a href="#" class="btn ">
+                    <a @click="()=>addExpenseModelToggle(bookId,2)" class="btn ">
                         Add Income
                     </a>
                 </div>
                 <div class="col-auto">
-                    <a href="#" class="btn">
+                    <a @click="()=>addExpenseModelToggle(bookId,1)" class="btn">
                         Add Expense
                     </a>
                 </div>
@@ -66,6 +66,7 @@ export default {
         bookDescription: String,
         bookOwner: String,
         handleDeleteExpenseBook:Function,
+        addExpenseModelToggle:Function,
 
 
     },
