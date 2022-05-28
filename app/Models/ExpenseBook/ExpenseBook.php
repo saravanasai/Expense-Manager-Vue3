@@ -41,7 +41,7 @@ class ExpenseBook extends Model
         parent::boot();
 
         static::saving(function ($expenseBook)  {
-            $expenseBook->user_id = Auth::user()->id;
+            $expenseBook->user_id = request()->user()->id;
         });
     }
 }

@@ -303,18 +303,24 @@ function useExpense() {
   var url = "/user/expense";
   var state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
     expenses: {},
-    isLoading: true
+    isLoadingExpense: true
   });
 
   var getExpense = function getExpense() {
     _config__WEBPACK_IMPORTED_MODULE_1__["default"].get(url).then(function (e) {
       state.expenses = e.data.data;
-      state.isLoading = false;
+      state.isLoadingExpense = false;
     });
   };
 
+  var addExpense = function addExpense(data) {
+    state.isLoadingExpense = true;
+    return _config__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, data);
+  };
+
   return _objectSpread(_objectSpread({}, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toRefs)(state)), {}, {
-    getExpense: getExpense
+    getExpense: getExpense,
+    addExpense: addExpense
   });
 }
 

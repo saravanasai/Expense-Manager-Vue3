@@ -1,29 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Api\Expense;
+namespace App\Http\Controllers\Api\Category;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Expense\ExpenseRequest;
-use App\Http\Resources\Expense\ExpenseResource;
-use App\Models\Expense\Expense;
+use App\Http\Resources\Category\CategoryResource;
+use App\Models\Category\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
-class ExpenseController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $expense=Cache::rememberForever("expenseList".$request->user()->id,function() use ($request)
-        {
-            return Expense::all();
+        $category = Cache::rememberForever("category", function () {
+
+            return Category::all();
         });
 
-        return ExpenseResource::collection($expense);
+        return CategoryResource::collection($category);
     }
 
     /**
@@ -32,11 +31,9 @@ class ExpenseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ExpenseRequest $request)
+    public function store(Request $request)
     {
-        $newExpense=Expense::create($request->validated());
-
-        return ExpenseResource::make($newExpense);
+        //
     }
 
     /**

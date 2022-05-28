@@ -19,8 +19,10 @@ class Expense extends Model
 
     protected $fillable=[
         'user_id',
+        'expense_book_id',
         'expense_category',
         'expense_amount',
+        'expense_type',
         'expense_note',
     ];
 
@@ -38,5 +40,14 @@ class Expense extends Model
     public function User()
     {
         return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($expense)  {
+            $expense->user_id = request()->user()->id;
+        });
     }
 }

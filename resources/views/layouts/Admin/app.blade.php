@@ -19,8 +19,11 @@
 
 </head>
 
-<body>
+<body class="theme-light" >
     <div class="page" id="app">
+
+    </div>
+    <div  id="model">
 
     </div>
 

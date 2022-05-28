@@ -17,8 +17,9 @@ class ExpenseBookController extends Controller
      */
     public function index(Request $request)
     {
-        // dd("expenseBook_" . $request->user()->id);
+
         $expense_book = Cache::rememberForever("expenseBook_" . $request->user()->id, function (){
+
             return ExpenseBook::all();
         });
 

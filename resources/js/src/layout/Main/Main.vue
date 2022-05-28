@@ -17,7 +17,7 @@ import useAuth from "../../composables/useAuth";
 export default {
   setup() {
     const { updateAuthState } = inject("store");
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated,removeAuthToken } = useAuth();
 
     onMounted(() => {
       if (isAuthenticated()) {
@@ -25,6 +25,7 @@ export default {
         updateAuthState(true);
       } else {
         updateAuthState(false);
+        removeAuthToken()
       }
     });
   },

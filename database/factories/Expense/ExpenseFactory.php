@@ -20,6 +20,7 @@ class ExpenseFactory extends Factory
             'expense_book_id'=>rand(1,2),
             'expense_category'=>rand(1,10),
             'expense_amount'=>rand(10,10000),
+            'expense_type'=>rand(1,2),
             'expense_note'=>$this->faker->sentence(),
         ];
     }

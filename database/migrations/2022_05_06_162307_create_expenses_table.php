@@ -22,6 +22,7 @@ class CreateExpensesTable extends Migration
             $table->unsignedBigInteger('expense_category')->nullable()->default(null);
             $table->foreign('expense_category')->references('id')->on('categories')->cascadeOnDelete();
             $table->bigInteger('expense_amount');
+            $table->tinyInteger('expense_type')->default(1)->comment('1 means expense 2 means income');
             $table->string('expense_note')->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();
