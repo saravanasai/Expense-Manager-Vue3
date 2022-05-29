@@ -33,7 +33,8 @@ const routes = [
         component: Login,
     },
     {
-        path: "/my-expense",
+        path: "/my-book/:id/expense",
+        props:true,
         name: "expense",
         component: Expense,
         meta:{requiresAuth: true}

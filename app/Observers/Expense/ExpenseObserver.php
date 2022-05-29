@@ -15,7 +15,8 @@ class ExpenseObserver
      */
     public function created(Expense $expense)
     {
-        Cache::forget("expenseList".request()->user()->id);
+        Cache::forget("expenseList".$expense->expense_book_id);
+        Cache::flush();
     }
 
     /**
@@ -26,7 +27,8 @@ class ExpenseObserver
      */
     public function updated(Expense $expense)
     {
-        Cache::forget("expenseList".request()->user()->id);
+        Cache::forget("expenseList".$expense->expense_book_id);
+        Cache::flush();
     }
 
     /**
@@ -37,7 +39,8 @@ class ExpenseObserver
      */
     public function deleted(Expense $expense)
     {
-        Cache::forget("expenseList".request()->user()->id);
+        Cache::flush();
+        Cache::forget("expenseList".$expense->expense_book_id);
     }
 
     /**
@@ -48,7 +51,8 @@ class ExpenseObserver
      */
     public function restored(Expense $expense)
     {
-        Cache::forget("expenseList".request()->user()->id);
+        Cache::forget("expenseList".$expense->expense_book_id);
+        Cache::flush();
     }
 
     /**
@@ -59,6 +63,7 @@ class ExpenseObserver
      */
     public function forceDeleted(Expense $expense)
     {
-        Cache::forget("expenseList".request()->user()->id);
+        Cache::forget("expenseList".$expense->expense_book_id);
+        Cache::flush();
     }
 }

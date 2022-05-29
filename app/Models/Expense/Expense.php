@@ -17,6 +17,8 @@ class Expense extends Model
 
     protected $table="expenses";
 
+
+
     protected $fillable=[
         'user_id',
         'expense_book_id',

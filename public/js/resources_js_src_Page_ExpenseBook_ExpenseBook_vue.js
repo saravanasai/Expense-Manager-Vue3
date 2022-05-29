@@ -366,29 +366,35 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "col-auto"
 };
-var _hoisted_12 = {
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" View Transaction ");
+
+var _hoisted_13 = {
+  "class": "col-auto"
+};
+var _hoisted_14 = {
   "class": "dropdown"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<a href=\"#\" class=\"btn-action\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><desc>Download more icon variants from https://tabler-icons.io/i/dots-vertical</desc><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"12\" cy=\"12\" r=\"1\"></circle><circle cx=\"12\" cy=\"19\" r=\"1\"></circle><circle cx=\"12\" cy=\"5\" r=\"1\"></circle></svg></a>", 1);
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<a href=\"#\" class=\"btn-action\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical --><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><desc>Download more icon variants from https://tabler-icons.io/i/dots-vertical</desc><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"12\" cy=\"12\" r=\"1\"></circle><circle cx=\"12\" cy=\"19\" r=\"1\"></circle><circle cx=\"12\" cy=\"5\" r=\"1\"></circle></svg></a>", 1);
 
-var _hoisted_14 = {
+var _hoisted_16 = {
   "class": "dropdown-menu dropdown-menu-end"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit");
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit");
 
-var _hoisted_16 = {
+var _hoisted_18 = {
   "class": "row"
 };
-var _hoisted_17 = {
+var _hoisted_19 = {
   "class": "d-flex justify-content-end"
 };
-var _hoisted_18 = {
+var _hoisted_20 = {
   "class": "text-mute px-4"
 };
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Owner : ", -1
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Owner : ", -1
 /* HOISTED */
 );
 
@@ -413,7 +419,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $props.addExpenseModelToggle($props.bookId, 1);
     }),
     "class": "btn"
-  }, " Add Expense ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, " Add Expense ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'expense',
+      params: {
+        id: $props.bookId
+      }
+    },
+    "class": "btn btn-dark"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_12];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'book',
       params: {
@@ -423,7 +446,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "dropdown-item"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_15];
+      return [_hoisted_17];
     }),
     _: 1
     /* STABLE */
@@ -435,7 +458,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $props.handleDeleteExpenseBook($props.bookId);
     }, ["prevent"])),
     "class": "dropdown-item text-danger"
-  }, "Delete")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookOwner), 1
+  }, "Delete")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookOwner), 1
   /* TEXT */
   )])])])])]);
 }
@@ -561,9 +584,13 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_13 = {
   "class": "mb-3"
 };
-var _hoisted_14 = {
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label"
-};
+}, "Category", -1
+/* HOISTED */
+);
+
 var _hoisted_15 = {
   "class": "form-selectgroup form-selectgroup-pills"
 };
@@ -653,9 +680,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             placeholder: "Enter Amount"
           }, null, 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.expenseAmount]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_14, "Category " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.expenseCategory), 1
-          /* TEXT */
-          ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.categories, function (category) {
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.expenseAmount]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.categories, function (category) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", {
               key: category.id,
               "class": "form-selectgroup-item"
@@ -812,12 +837,15 @@ function useExpense() {
   var url = "/user/expense";
   var state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
     expenses: {},
+    paginationData: {},
     isLoadingExpense: true
   });
 
-  var getExpense = function getExpense() {
-    _config__WEBPACK_IMPORTED_MODULE_1__["default"].get(url).then(function (e) {
+  var getExpense = function getExpense(id) {
+    var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    _config__WEBPACK_IMPORTED_MODULE_1__["default"].get(url + '?page=' + page + '&&bookId=' + id).then(function (e) {
       state.expenses = e.data.data;
+      state.paginationData = e.data;
       state.isLoadingExpense = false;
     });
   };

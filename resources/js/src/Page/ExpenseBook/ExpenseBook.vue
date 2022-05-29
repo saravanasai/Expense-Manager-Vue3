@@ -50,7 +50,7 @@
                                             placeholder="Enter Amount">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Category {{ expenseCategory }}</label>
+                                        <label class="form-label">Category</label>
                                         <div class="form-selectgroup form-selectgroup-pills">
                                             <template v-for="category  in categories" :key="category.id">
                                                 <label class="form-selectgroup-item">
@@ -130,9 +130,9 @@ export default {
 
             addExpenseState.bookId = bookId
             addExpenseState.expenseType = expenseType
-            addExpenseState.expenseCategory=10
-            addExpenseState.expenseAmount=''
-            addExpenseState.expenseNote=''
+            addExpenseState.expenseCategory = 10
+            addExpenseState.expenseAmount = ''
+            addExpenseState.expenseNote = ''
 
             addIncomeModelStatus.value = !addIncomeModelStatus.value;
         };
@@ -141,11 +141,11 @@ export default {
 
             let data = {
 
-                expense_book_id:addExpenseState.bookId,
-                expense_category:addExpenseState.expenseCategory,
-                expense_amount:addExpenseState.expenseAmount,
-                expense_type:addExpenseState.expenseType,
-                expense_note:addExpenseState.expenseNote,
+                expense_book_id: addExpenseState.bookId,
+                expense_category: addExpenseState.expenseCategory,
+                expense_amount: addExpenseState.expenseAmount,
+                expense_type: addExpenseState.expenseType,
+                expense_note: addExpenseState.expenseNote,
 
             }
 
@@ -162,7 +162,7 @@ export default {
                         timer: 1500,
                     }).then((e) => {
 
-                        handleModelToggle(0,0)
+                        handleModelToggle(0, 0)
                     });
 
                 }

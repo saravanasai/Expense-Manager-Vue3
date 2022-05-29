@@ -21,9 +21,14 @@
                     </a>
                 </div>
                 <div class="col-auto">
-                    <a @click="()=>addExpenseModelToggle(bookId,1)" class="btn">
+                    <a @click="()=>addExpenseModelToggle(bookId,1)" class="btn ">
                         Add Expense
                     </a>
+                </div>
+                 <div class="col-auto">
+                    <router-link :to="{name:'expense',params:{id:bookId}}"  class="btn btn-dark">
+                        View Transaction
+                    </router-link>
                 </div>
                 <div class="col-auto">
                     <div class="dropdown">
