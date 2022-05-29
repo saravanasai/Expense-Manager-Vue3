@@ -7,15 +7,18 @@ export default function useExpense() {
 
     const state = reactive({
         expenses: {},
+        paginationData: {},
         isLoadingExpense:true
     })
 
-    const getExpense = () => {
+    const getExpense = (id,page=1) => {
 
-        api.get(url)
+
+        api.get(url+'?page='+page+'&&bookId='+id)
             .then(e => {
 
             state.expenses = e.data.data
+            state.paginationData = e.data
             state.isLoadingExpense = false
 
         })

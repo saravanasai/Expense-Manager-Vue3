@@ -21551,7 +21551,8 @@ var routes = [{
   name: "login",
   component: _Page_Login_Login_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
-  path: "/my-expense",
+  path: "/my-book/:id/expense",
+  props: true,
   name: "expense",
   component: Expense,
   meta: {

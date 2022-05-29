@@ -18,10 +18,8 @@ class ExpenseController extends Controller
      */
     public function index(Request $request)
     {
-        $expense=Cache::rememberForever("expenseList".$request->user()->id,function() use ($request)
-        {
-            return Expense::all();
-        });
+
+        $expense = Expense::where('expense_book_id', (int)$request->bookId)->paginate(3);
 
         return ExpenseResource::collection($expense);
     }
@@ -34,7 +32,7 @@ class ExpenseController extends Controller
      */
     public function store(ExpenseRequest $request)
     {
-        $newExpense=Expense::create($request->validated());
+        $newExpense = Expense::create($request->validated());
 
         return ExpenseResource::make($newExpense);
     }
@@ -70,6 +68,8 @@ class ExpenseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Expense::destroy($id);
+
+        return response()->noContent();
     }
 }
