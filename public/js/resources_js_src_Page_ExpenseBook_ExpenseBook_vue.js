@@ -834,7 +834,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 function useExpense() {
-  var url = "/user/expense";
+  var url = "/user/expense/";
   var state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
     expenses: {},
     paginationData: {},
@@ -843,7 +843,7 @@ function useExpense() {
 
   var getExpense = function getExpense(id) {
     var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-    _config__WEBPACK_IMPORTED_MODULE_1__["default"].get(url + '?page=' + page + '&&bookId=' + id).then(function (e) {
+    _config__WEBPACK_IMPORTED_MODULE_1__["default"].get(url + "?page=" + page + "&&bookId=" + id).then(function (e) {
       state.expenses = e.data.data;
       state.paginationData = e.data;
       state.isLoadingExpense = false;
@@ -855,9 +855,14 @@ function useExpense() {
     return _config__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, data);
   };
 
+  var deleteExpense = function deleteExpense(id) {
+    return _config__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"](url + id);
+  };
+
   return _objectSpread(_objectSpread({}, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toRefs)(state)), {}, {
     getExpense: getExpense,
-    addExpense: addExpense
+    addExpense: addExpense,
+    deleteExpense: deleteExpense
   });
 }
 
