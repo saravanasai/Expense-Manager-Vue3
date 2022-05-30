@@ -18,6 +18,7 @@ class ExpenseResource extends JsonResource
         return [
             'expense_id'=>$this->id,
             'expense_amount'=>$this->expense_amount,
+            'expense_type'=>$this->expense_type,
             'expense_note'=>$this->expense_note,
             'expense_category'=>CategoryResource::make($this->whenLoaded('Category')),
             'expense_created_at'=>$this->created_at->format('d-M-Y'),

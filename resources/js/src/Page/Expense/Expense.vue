@@ -44,11 +44,12 @@
                     <div class="col-md-10 offset-md-1" v-if="isLoadingExpense">
                         <Loader :isLoading="isLoadingExpense" />
                     </div>
-                    <div class="col-md-12s" v-if="expenses">
-                        <template v-for="expense in expenses" :key="expense.id">
-                            <ExpenseCard :amount="expense.expense_amount" :note="expense.expense_note"
-                                :category="expense.expense_category.category_name"
-                                :created="expense.expense_created_at" />
+                    <div class="col-md-12" v-if="expenses">
+                        <template v-for="expense in expenses" :key="expense.expense_id">
+                            <ExpenseCard :expenseId="expense.expense_id" :amount="expense.expense_amount"
+                                :expenseType="expense.expense_type" :note="expense.expense_note"
+                                :category="expense.expense_category.category" :created="expense.expense_created_at"
+                                :handleDeleteExpense="handleDeleteExpense" />
                         </template>
                     </div>
                     <Pagination :data="paginationData" @pagination-change-page="getResults" :align="'right'" />
@@ -73,19 +74,54 @@ export default {
     },
     setup(props) {
 
-        const { isLoadingExpense, expenses,paginationData, getExpense } = useExpense();
+        const { isLoadingExpense, expenses, paginationData, getExpense, deleteExpense } = useExpense();
 
         onMounted(() => {
             getExpense(props.id)
         })
 
-       const getResults=(page = 1)=> {
+        const getResults = (page = 1) => {
 
-             getExpense(props.id,page)
+            getExpense(props.id, page)
 
         }
 
-        return { expenses, isLoadingExpense, paginationData,getResults };
+        const handleDeleteExpense = (id) => {
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#2fb344',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    deleteExpense(id)
+                        .then(e => {
+
+                            if (e.status == 204) {
+                                getExpense(props.id)
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: `Transaction Deleted`,
+                                    toast: true,
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                })
+                            }
+
+                        })
+
+                }
+            })
+
+        }
+
+        return { expenses, isLoadingExpense, paginationData, getResults, handleDeleteExpense };
     },
 };
 </script>
