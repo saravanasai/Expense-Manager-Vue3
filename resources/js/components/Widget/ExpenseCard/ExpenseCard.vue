@@ -42,12 +42,16 @@
                                 </svg>
                             </template>
                         </div>
+                        <div class="d-flex flex-column">
                         <p class="card-text"><small class="text-muted">{{ created }}</small></p>
+                        <p class="card-text"><small class="text-muted">{{ expenseUser.name }}</small></p>
+                        <p class="card-text"><small class="text-muted">{{ expenseUser.email }}</small></p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="row mt-2">
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end" v-if="expenseUser.user_id==12">
                             <a @click="()=>handleDeleteExpense(expenseId)" class="btn btn-danger btn-pill">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash"
                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -75,6 +79,7 @@ export default {
         expenseId: Number,
         amount: Number,
         expenseType: String,
+        expenseUser: Object,
         note: String,
         category: String,
         created: String,

@@ -13,6 +13,7 @@ const NewExpense = import('../Page/Expense/NewExpense.vue');
 const ExpenseBook = import('../Page/ExpenseBook/ExpenseBook.vue');
 const NewExpenseBook = import('../Page/ExpenseBook/NewExpenseBook.vue');
 const EditExpenseBook = import('../Page/ExpenseBook/EditExpenseBook.vue');
+const ShareExpenseBook = import('../Page/ExpenseBook/ShareExpenseBook.vue');
 
 
 const routes = [
@@ -43,6 +44,13 @@ const routes = [
         path: "/my-books",
         name: "books",
         component: ExpenseBook,
+        meta:{requiresAuth: true}
+    },
+    {
+        path: "/my-books/:id/share",
+        name: "share-book",
+        props:true,
+        component: ShareExpenseBook,
         meta:{requiresAuth: true}
     },
     {

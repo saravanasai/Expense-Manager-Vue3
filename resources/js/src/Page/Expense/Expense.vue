@@ -46,7 +46,10 @@
                     </div>
                     <div class="col-md-12" v-if="expenses">
                         <template v-for="expense in expenses" :key="expense.expense_id">
-                            <ExpenseCard :expenseId="expense.expense_id" :amount="expense.expense_amount"
+                            <ExpenseCard :expenseId="expense.expense_id"
+
+                                :expenseUser="expense.expense_user"
+                                :amount="expense.expense_amount"
                                 :expenseType="expense.expense_type" :note="expense.expense_note"
                                 :category="expense.expense_category.category" :created="expense.expense_created_at"
                                 :handleDeleteExpense="handleDeleteExpense" />

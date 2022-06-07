@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 class Expense extends Model
 {
     use HasFactory;
-    use WithUserBook;
+    // use WithUserBook;
 
-    protected $with=['Category'];
+    protected $with=['Category','User'];
 
     protected $table="expenses";
 

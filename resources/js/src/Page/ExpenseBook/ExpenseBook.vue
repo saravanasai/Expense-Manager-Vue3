@@ -38,6 +38,7 @@
         <template v-slot:content>
             <div class="card p-5">
                 <div class="row row-cards">
+                    <!-- section for add income & expense model   -->
                     <Teleport to="#model">
                         <SimpleModal v-if="addIncomeModelStatus" :handleClose="handleModelToggle"
                             :modelTittle="expenseType == 1 ? 'Add New Expense' : 'Add New Income'"
@@ -73,6 +74,7 @@
                             </template>
                         </SimpleModal>
                     </Teleport>
+                    <!--end  section for add income & expense model   -->
                     <div class="col-md-10 offset-md-1" v-if="isLoading">
                         <Loader :isLoading="isLoading" />
                     </div>
@@ -80,7 +82,8 @@
                         <template v-for="book in expenseBooks" :key="book.id">
                             <BookCard :bookId="book.id" :bookName="book.book" :bookDescription="book.description"
                                 :bookOwner="book.user.name" :handleDeleteExpenseBook="handleDeleteExpenseBook"
-                                :addExpenseModelToggle="handleModelToggle" />
+                                :addExpenseModelToggle="handleModelToggle"
+                                 />
                         </template>
                     </div>
                 </div>
@@ -106,6 +109,7 @@ export default {
 
         const addIncomeModelStatus = ref(false);
 
+
         const addExpenseState = reactive({
             bookId: 0,
             expenseCategory: 10,
@@ -114,6 +118,10 @@ export default {
             expenseType: 0,
         })
 
+        const shareBookState = reactive({
+            shareBookId: 0,
+            shareToUsers: []
+        })
 
         const { isLoading, expenseBooks, getExpenseBooks, deleteExpenseBook } =
             useExpenseBook();
@@ -171,6 +179,9 @@ export default {
 
         }
 
+
+
+
         const handleDeleteExpenseBook = (id) => {
             deleteExpenseBook(id).then((e) => {
                 if (e.status == 204) {
@@ -195,6 +206,7 @@ export default {
             addIncomeModelStatus,
             handleModelToggle,
             handleAddExpense,
+
             ...toRefs(addExpenseState)
         };
     },
