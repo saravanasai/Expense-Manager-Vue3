@@ -46,6 +46,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <router-link :to="{name:'book',params:{id:bookId}}" class="dropdown-item">Edit</router-link>
+                            <router-link :to="{name:'share-book',params:{id:bookId}}" class="dropdown-item">Share</router-link>
                             <a @click.prevent="()=>handleDeleteExpenseBook(bookId)" class="dropdown-item text-danger">Delete</a>
                         </div>
                     </div>

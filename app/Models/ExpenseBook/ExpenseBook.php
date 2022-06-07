@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class ExpenseBook extends Model
 {
     use HasFactory;
-    use WithUserBook;
+    // use WithUserBook;
 
 
     protected $with = ['user'];

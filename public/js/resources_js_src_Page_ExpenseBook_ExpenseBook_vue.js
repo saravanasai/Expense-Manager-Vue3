@@ -131,6 +131,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       expenseNote: '',
       expenseType: 0
     });
+    var shareBookState = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_8__.reactive)({
+      shareBookId: 0,
+      shareToUsers: []
+    });
 
     var _useExpenseBook = (0,_composables_useExpenseBook__WEBPACK_IMPORTED_MODULE_5__["default"])(),
         isLoading = _useExpenseBook.isLoading,
@@ -384,17 +388,19 @@ var _hoisted_16 = {
 
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit");
 
-var _hoisted_18 = {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Share");
+
+var _hoisted_19 = {
   "class": "row"
 };
-var _hoisted_19 = {
+var _hoisted_20 = {
   "class": "d-flex justify-content-end"
 };
-var _hoisted_20 = {
+var _hoisted_21 = {
   "class": "text-mute px-4"
 };
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Owner : ", -1
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Owner : ", -1
 /* HOISTED */
 );
 
@@ -453,12 +459,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
+  , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'share-book',
+      params: {
+        id: $props.bookId
+      }
+    },
+    "class": "dropdown-item"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_18];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
   , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $props.handleDeleteExpenseBook($props.bookId);
     }, ["prevent"])),
     "class": "dropdown-item text-danger"
-  }, "Delete")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookOwner), 1
+  }, "Delete")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bookOwner), 1
   /* TEXT */
   )])])])])]);
 }
@@ -661,7 +684,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       })];
     }),
     content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Teleport, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" section for add income & expense model   "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Teleport, {
         to: "#model"
       }, [$setup.addIncomeModelStatus ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_SimpleModal, {
         key: 0,
@@ -719,7 +742,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["handleClose", "modelTittle", "btnText", "handleSubmit"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])), $setup.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Loader, {
+      , ["handleClose", "modelTittle", "btnText", "handleSubmit"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("end  section for add income & expense model   "), $setup.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Loader, {
         isLoading: $setup.isLoading
       }, null, 8
       /* PROPS */
@@ -950,6 +973,14 @@ function useExpenseBook() {
     return _config__WEBPACK_IMPORTED_MODULE_2__["default"].put(url + state.expenseBook.id, data);
   };
 
+  var shareExpenseBook = function shareExpenseBook(props) {
+    var data = {
+      email: props.shareToEmail
+    };
+    state.isLoading = true;
+    return _config__WEBPACK_IMPORTED_MODULE_2__["default"].put(url + "share/" + state.expenseBook.id, data);
+  };
+
   var deleteExpenseBook = function deleteExpenseBook(id) {
     state.isLoading = true;
     return _config__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"](url + id);
@@ -960,7 +991,8 @@ function useExpenseBook() {
     addExpenseBooks: addExpenseBooks,
     getExpenseBook: getExpenseBook,
     updateExpenseBook: updateExpenseBook,
-    deleteExpenseBook: deleteExpenseBook
+    deleteExpenseBook: deleteExpenseBook,
+    shareExpenseBook: shareExpenseBook
   });
 }
 

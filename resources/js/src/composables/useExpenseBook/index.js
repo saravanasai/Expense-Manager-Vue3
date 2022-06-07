@@ -40,6 +40,14 @@ export default function useExpenseBook() {
         return api.put(url + state.expenseBook.id, data)
     }
 
+    const shareExpenseBook = props => {
+        let data = {
+            email: props.shareToEmail
+        }
+        state.isLoading = true
+        return api.put(url + "share/" + state.expenseBook.id, data)
+    }
+
     const deleteExpenseBook = id => {
         state.isLoading = true
         return api.delete(url + id)
@@ -51,6 +59,7 @@ export default function useExpenseBook() {
         addExpenseBooks,
         getExpenseBook,
         updateExpenseBook,
-        deleteExpenseBook
+        deleteExpenseBook,
+        shareExpenseBook
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Expense;
 
 use App\Http\Resources\Category\CategoryResource;
+use App\Http\Resources\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ExpenseResource extends JsonResource
@@ -17,6 +18,7 @@ class ExpenseResource extends JsonResource
     {
         return [
             'expense_id'=>$this->id,
+            'expense_user'=>UserResource::make($this->whenLoaded('User')),
             'expense_amount'=>$this->expense_amount,
             'expense_type'=>$this->expense_type,
             'expense_note'=>$this->expense_note,

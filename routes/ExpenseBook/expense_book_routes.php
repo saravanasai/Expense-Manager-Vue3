@@ -21,5 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(["prefix"=>"user","middleware"=>"auth:sanctum"],function ()
 {
+    Route::put('expense-book/share/{id}',[ExpenseBookController::class,'shareBook']);
     Route::apiResource('expense-book',ExpenseBookController::class);
+
 });

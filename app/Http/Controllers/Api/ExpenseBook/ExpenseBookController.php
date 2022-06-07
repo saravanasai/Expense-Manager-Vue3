@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\ExpenseBook;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ExpenseBook\ExpenseBookResource;
 use App\Models\ExpenseBook\ExpenseBook;
+use App\Models\ExpenseBook\ExpenseBookShared;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -18,9 +20,12 @@ class ExpenseBookController extends Controller
     public function index(Request $request)
     {
 
-        $expense_book = Cache::rememberForever("expenseBook_" . $request->user()->id, function (){
+        $expense_book = Cache::rememberForever("expenseBook_" . $request->user()->id, function () {
 
-            return ExpenseBook::all();
+
+            $shared_expense_books=ExpenseBookShared::where('to_user_id',request()->user()->id)->pluck('shared_book_id');
+
+            return ExpenseBook::whereIn('id',$shared_expense_books)->get();
         });
 
         return ExpenseBookResource::collection($expense_book);
@@ -36,10 +41,18 @@ class ExpenseBookController extends Controller
     {
         $this->validate($request, [
             'book_name' => ['required'],
-            'book_description' =>['sometimes'],
+            'book_description' => ['sometimes'],
         ]);
 
         $is_stored = ExpenseBook::create($request->all());
+
+        $is_stored = ExpenseBookShared::create(
+            [
+                "to_user_id" => auth()->user()->id,
+                "shared_book_id" => $is_stored->id
+            ]
+
+        );
 
         return $is_stored
             ? response()->json(['message' => 'New Book Created', 'data' => $request->all()], 201)
@@ -71,7 +84,7 @@ class ExpenseBookController extends Controller
     {
         $this->validate($request, [
             'book_name' => ['required'],
-            'book_description' =>['sometimes'],
+            'book_description' => ['sometimes'],
         ]);
 
         $is_updated = ExpenseBook::find($id)->update($request->all());
@@ -92,5 +105,37 @@ class ExpenseBookController extends Controller
         ExpenseBook::destroy($id);
 
         return response()->noContent();
+    }
+
+
+
+
+    public function shareBook(Request $request, $id)
+    {
+
+        $user = User::where('email', $request->email)->first();
+
+        //checking the if already the user exist
+        if ($user) {
+            $data = [
+                "to_user_id" => $user->id,
+                "shared_book_id" => $id,
+            ];
+
+            //checking  if the expense Book already  shared to the user
+            $is_shared = ExpenseBookShared::firstOrCreate(
+                [
+                    "to_user_id" => $user->id,
+                    "shared_book_id" => $id
+                ],
+                $data
+            );
+
+            return $is_shared
+                ? response()->json(['message' => 'Shared', 'data' => $request->all()], 200)
+                : response()->json(['message' => 'something went wrong'], 500);
+        }
+
+        return response()->json(['message' => 'User Not Found'], 404);
     }
 }

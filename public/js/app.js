@@ -21535,6 +21535,7 @@ var NewExpense = __webpack_require__.e(/*! import() */ "resources_js_src_Page_Ex
 var ExpenseBook = __webpack_require__.e(/*! import() */ "resources_js_src_Page_ExpenseBook_ExpenseBook_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/ExpenseBook/ExpenseBook.vue */ "./resources/js/src/Page/ExpenseBook/ExpenseBook.vue"));
 var NewExpenseBook = __webpack_require__.e(/*! import() */ "resources_js_src_Page_ExpenseBook_NewExpenseBook_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/ExpenseBook/NewExpenseBook.vue */ "./resources/js/src/Page/ExpenseBook/NewExpenseBook.vue"));
 var EditExpenseBook = __webpack_require__.e(/*! import() */ "resources_js_src_Page_ExpenseBook_EditExpenseBook_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/ExpenseBook/EditExpenseBook.vue */ "./resources/js/src/Page/ExpenseBook/EditExpenseBook.vue"));
+var ShareExpenseBook = __webpack_require__.e(/*! import() */ "resources_js_src_Page_ExpenseBook_ShareExpenseBook_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Page/ExpenseBook/ShareExpenseBook.vue */ "./resources/js/src/Page/ExpenseBook/ShareExpenseBook.vue"));
 var routes = [{
   path: "/",
   name: "home",
@@ -21562,6 +21563,14 @@ var routes = [{
   path: "/my-books",
   name: "books",
   component: ExpenseBook,
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: "/my-books/:id/share",
+  name: "share-book",
+  props: true,
+  component: ShareExpenseBook,
   meta: {
     requiresAuth: true
   }
@@ -48382,7 +48391,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_src_Page_Expense_Expense_vue":1,"resources_js_src_Page_Expense_NewExpense_vue":1,"resources_js_src_Page_ExpenseBook_ExpenseBook_vue":1,"resources_js_src_Page_ExpenseBook_NewExpenseBook_vue":1,"resources_js_src_Page_ExpenseBook_EditExpenseBook_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_src_Page_Expense_Expense_vue":1,"resources_js_src_Page_Expense_NewExpense_vue":1,"resources_js_src_Page_ExpenseBook_ExpenseBook_vue":1,"resources_js_src_Page_ExpenseBook_NewExpenseBook_vue":1,"resources_js_src_Page_ExpenseBook_EditExpenseBook_vue":1,"resources_js_src_Page_ExpenseBook_ShareExpenseBook_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
